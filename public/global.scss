@@ -1,0 +1,29 @@
+:root{
+    --main-bg-gray: #8F8F8F;
+
+    --login-bg2-white: #ffff;
+    --login-bg2-white: #FAFAFA;
+    --login-text-black: #212121;
+    --login-text2-gray: #616161;
+    --login-button-black: #212121;
+
+    --navbar-text-liner-blue: #0F5FC2;
+    --navbar-login-button-blue: #2F6BEE;
+
+    --home-text-blue: #0F5FC2;
+    --home-button-blue: #0F5FC2;
+    
+    --footer-top-border-blue: #0F5FC2;
+    
+}
+
+
+#root{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
