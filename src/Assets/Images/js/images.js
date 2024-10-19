@@ -1,4 +1,4 @@
-import Logo from '../Logo.svg';
+import Logo from '../setting 1.svg';
 
 
 export default {
