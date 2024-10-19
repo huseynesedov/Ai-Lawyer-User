@@ -4,13 +4,13 @@ import RouteList from './Components/Layout/Routes';
 import Layout from './Components/Layout/MainLayout/index';
 import Login from './Components/Pages/Login';
 
-import { AuthProvider, useAuth } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 
-import  {Spin} from 'antd'
+import { Spin } from 'antd';
 
 function App() {
-  const { loggedIn , loginLoading } = useAuth();
-
+  const loggedIn = true; 
+  const loginLoading = false; 
 
   return (
     <>
@@ -19,9 +19,9 @@ function App() {
           <RouteList />
         </Layout>
       ) : (
-          <Spin spinning={loginLoading} tip="Loading...">
-            <Login />
-          </Spin>
+        <Spin spinning={loginLoading} tip="Loading...">
+          <Login />
+        </Spin>
       )}
     </>
   );
