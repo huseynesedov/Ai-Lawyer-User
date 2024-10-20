@@ -1,6 +1,6 @@
 import axios from "axios";
-import siteUrl from "./const";
-const BASE_URL = siteUrl
+import backendUrl from "./const";
+const BASE_URL = backendUrl
 
 const createConfig = (params, contentType) => {
     let token = localStorage.getItem('token')
