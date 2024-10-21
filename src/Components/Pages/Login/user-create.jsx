@@ -96,15 +96,15 @@ function Register() {
             <label>
               <p className='fs-12'>Email</p>
               <input
-                type="email"
-                value={email}
+                type="text"
+                value={userName}
                 onChange={(e) => {
-                  const emailValue = e.target.value;
-                  setEmail(emailValue);
-                  const usernameValue = emailValue.split('@')[0];
+                  const usernameValue = e.target.value;
                   setUserName(usernameValue);
+                  const emailValue = usernameValue.split('@')[0]; // username'den email'e dönüştürme mantığını değiştiriyoruz
+                  setEmail(emailValue);
                 }}
-                placeholder='example@gmail.com'
+                placeholder='Kullanıcı adınız'
               />
             </label>
 

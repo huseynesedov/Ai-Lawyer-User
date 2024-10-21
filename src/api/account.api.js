@@ -23,8 +23,11 @@ export const AccountApi = {
         return BaseApi.post(`${apiRoutes.Auth.verifyOtp}?email=${params.email}&otpCode=${params.otpCode}`);
     },
     resetPasswordSendEmail(emailId) {
-        return BaseApi.post(apiRoutes.Auth.resetPasswordSendEmail, { data: { email: emailId } });
+        const payload = { email: emailId };
+        console.log('Payload being sent:', payload); // Gönderilecek veriyi loglayın
+        return BaseApi.post(apiRoutes.Auth.resetPasswordSendEmail, payload);
     },
+    
     resetPassword(params) {
         return BaseApi.post(`${apiRoutes.Auth.verifyOtp}?email=${params.email}&token=${params.token}`);
     },

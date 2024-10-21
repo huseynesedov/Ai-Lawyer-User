@@ -9,6 +9,7 @@ import Footer from "../../Layout/Footer/index";
 import { Spin } from "antd";
 import { useAuth } from "../../../AuthContext";
 import Forgot from "../../Pages/Login/forgot";
+import Mail from "../../Pages/Login/mailcontrol";
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -47,6 +48,14 @@ const RouteList = () => {
           element={
             <Spin spinning={loginLoading} tip="Loading...">
               <Forgot />
+            </Spin>
+          }
+        />
+        <Route
+          path="/VerifyMail"
+          element={
+            <Spin spinning={loginLoading} tip="Loading...">
+              <Mail />
             </Spin>
           }
         />

@@ -60,23 +60,39 @@ export const AuthProvider = ({ children }) => {
 
   const register = (fullName, lastName, userName, email, password, rePassword, navigate) => {
     setLoginLoading(true);
-  
+
     return AccountApi.register({ fullName, lastName, userName, email, password, rePassword })
       .then((res) => {
         console.log(res);
         setLoggedIn(true);
+        localStorage.setItem('loggedIn', true);
+        navigate('/VerifyMail'); // Uğurlu qeydiyyatdan sonra yönləndirin
+      })
+      .catch((error) => {
+        setLoggedIn(false); // Xəta baş verdikdə istifadəçini daxil olmuş kimi göstərməyin
 
-        navigate('/Login', { state: { userName } });
+        // 409 Conflict errorunu yoxlayın
+        if (error.response?.status === 409) {
+          openNotification('Qeydiyyat xətası', 'Bu istifadəçi adı və ya email artıq mövcuddur.', true);
+        }
+        if (error.response?.status === 200) {
+          notification.success({
+              message: 'Uğurlu',
+              description: 'Doğrulama e-postası göndərildi. Zəhmət olmasa e-postanızı yoxlayın!',
+          });
+      }
       })
       .finally(() => {
         setLoginLoading(false);
       });
   };
 
+
   const logout = () => {
     setLoggedIn(false);
     localStorage.removeItem('loggedIn');
   };
+
 
   const googleLogin = async (params) => {
     setLoginLoading(true);
@@ -85,18 +101,18 @@ export const AuthProvider = ({ children }) => {
       console.log("Google Login Response:", response);
       setLoggedIn(true);
       localStorage.setItem('Google loggedIn', true);
-      localStorage.setItem('Google token', response.data.token); // Token'ı localStorage'a kaydediyoruz
-      openNotification('Giriş Başarılı', 'Google ile giriş yapıldı.', false);
+      localStorage.setItem('Google token', response.data.token);
+      openNotification('Giriş Başarılı', 'Google ile giriş etdiniz.', false);
     } catch (error) {
       setLoggedIn(false);
-      openNotification('Giriş Hatası', error.response?.data?.message || 'Google ile giriş yapılırken hata oluştu.', true);
+      openNotification('Giriş xətası', error.response?.data?.message || 'Google ile giriş edilirkən xəta yarandı.', true);
     } finally {
       setLoginLoading(false);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, logout, googleLogin, openNotification }}>
+    <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, googleLogin, logout, openNotification }}>
       {children}
     </AuthContext.Provider>
   );
