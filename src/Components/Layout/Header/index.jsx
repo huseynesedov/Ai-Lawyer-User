@@ -23,7 +23,7 @@ function Header() {
                                 <li>Ana Səhifə</li>
                             </Link>
                             <Link to={""}>
-                                <li>Faq</li>
+                                <li>FAQ</li>
                             </Link>
                             <Link to={""}>
                                 <li>Bloq</li>
