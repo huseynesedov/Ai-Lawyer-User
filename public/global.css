@@ -32,7 +32,13 @@ a{
     text-decoration: none !important;
 }
 
+.text-black{
+    color: #000;
+}
 
+.text-blue{
+    color: #0D217A;
+}
 
 .fs-1 {
     font-size: 1px;
