@@ -1,0 +1,32 @@
+.Footer{
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    .footer-info{
+        padding: 0 30px ;
+    }
+    .footer-chat{
+        input::placeholder {
+            color: #ffffff;
+            opacity: 1;
+          }
+    }
+    .footer-chat input{
+        height: 40px;
+        background-color: #0F5FC2;
+        outline: none;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+        
+    }
+    .footer-chat button{
+        height: 40px;
+        background-color: #0F5FC2;
+        outline: none;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+}
+}

@@ -6,7 +6,7 @@ import images from '../../../Assets/Images/js/images';
 
 function Home() {
     return (
-            <section id='Home'>
+            <div className='Home'>
                 <div className="container">
             <div className="home-hero d-flex justify-content-center">
                     <div className="row align-items-center">
@@ -71,7 +71,7 @@ function Home() {
                     </div>
                 </div>
                 </div>
-        </section>
+        </div>
     );
 }
 
