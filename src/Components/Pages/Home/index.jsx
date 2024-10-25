@@ -1,12 +1,15 @@
 import React from 'react';
-import images from '../../../Assets/Images/js/images';
 
 
 
 function Home() {
     return (
         <>
-            
+            <div className="gradient-color position-absolute"></div>
+
+            <div className="container">
+
+            </div>
         </>
     );
 }

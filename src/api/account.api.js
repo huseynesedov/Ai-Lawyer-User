@@ -13,8 +13,8 @@ export const AccountApi = {
     sendOtpToWhatsApp(phoneId) {
         return BaseApi.post(apiRoutes.Auth.sendOtpToWhatsApp, { data: { id: phoneId } });
     },
-    resetPasswordSendOtp(emailId) {
-        return BaseApi.post(apiRoutes.Auth.resetPasswordSendOtp, { data: { id: emailId } });
+    resetPasswordSendOtp(params) {
+        return BaseApi.post(apiRoutes.Auth.resetPasswordSendOtp, { ...params });
     },
     resetPasswordWithOtp(params) {
         return BaseApi.post(`${apiRoutes.Auth.resetPasswordWithOtp}?email=${params.email}&otpCode=${params.otpCode}`);
@@ -27,13 +27,17 @@ export const AccountApi = {
         console.log('Payload being sent:', payload); // Gönderilecek veriyi loglayın
         return BaseApi.post(apiRoutes.Auth.resetPasswordSendEmail, payload);
     },
-    
+
     resetPassword(params) {
         return BaseApi.post(`${apiRoutes.Auth.verifyOtp}?email=${params.email}&token=${params.token}`);
     },
-    googleLogin(params) {
-        return BaseApi.get(apiRoutes.Auth.googleLogin, { ...params });
+
+
+    googleLogin() {
+        return BaseApi.get(apiRoutes.Auth.googleLogin);
     },
+
+
     logout(data) {
         return BaseApi.post(apiRoutes.Auth.logout, data);
     },

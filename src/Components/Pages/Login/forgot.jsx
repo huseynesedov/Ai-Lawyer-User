@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import { notification } from 'antd';
-import { AccountApi } from '../../../api/account.api'; 
+import axios from 'axios';
 
 function Forgot() {
   const [email, setEmail] = useState('');
 
-  const handleForgotPassword = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!email) {
-      notification.error({
-        message: 'Xəta',
-        description: 'E-posta adresini daxil edin!',
-      });
-      return;
-    }
-
     try {
-      await AccountApi.resetPasswordSendEmail(email); 
+      const response = await axios.post('https://hashimovtabriz.com.tr/api/Auth/resetPasswordSendOtp', {
+        email, // Make sure this key matches what the server expects
+      });
 
+      notification.success({
+        message: 'Success',
+        description: 'An email has been sent to reset your password.',
+      });
     } catch (error) {
-      console.error("Şifrə sıfırlama e-postasını göndərilirkən xəta oldu: ", error);
-      const errorMessage = error.response?.data?.errors?.email?.[0] || 'Bir xəta oldu.';
+      const emailErrors = error.response?.data?.errors?.email;
+      const errorMessage = emailErrors
+        ? emailErrors.join(', ') // Combine any email-related errors into a string
+        : 'An error occurred while trying to send the email.';
+      
       notification.error({
-        message: 'Xəta',
+        message: 'Error',
         description: errorMessage,
       });
+      
+      // Log detailed error information
+      console.error('Email Validation Errors:', emailErrors);
     }
   };
 
@@ -35,13 +38,14 @@ function Forgot() {
         <div className="forgot-in">
           <div className="forgot-box">
             <h2>Şifrəni bərpa et</h2>
-            <form onSubmit={handleForgotPassword}>
+            <form onSubmit={handleSubmit}>
               <label>
                 <p>Email</p>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </label>
               <button type='submit' className='forgot-btn'>Göndər</button>

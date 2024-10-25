@@ -8,7 +8,7 @@
 }
 
 :root{
-    --main-bg-gray: #8F8F8F;
+    --main-bg-gray: #F4F4F4;
 
     --login-bg2-white: #ffff;
     --login-bg2-white: #FAFAFA;
@@ -31,6 +31,29 @@ a{
     color: transparent ;
     text-decoration: none !important;
 }
+
+#root{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+
+}
+
+
+body{
+    position: relative;
+    background-color:var(--main-bg-gray)!important;
+}
+
+
+
+
+
+
 
 
 

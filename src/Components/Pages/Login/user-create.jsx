@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext';
 import images from '../../../Assets/Images/js/images';
 import { notification } from 'antd';
 
 function Register() {
-  const { register, googleLogin } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const [fullName, setFullName] = useState('');
@@ -59,18 +59,38 @@ function Register() {
       });
   };
 
+
+  useEffect(() => {
+    // urldan tokeni aliriq
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    if (token) {
+    
+      localStorage.setItem('google-token', token);
+      const expirationTime = new Date().getTime() + 12 * 60 * 60 * 1000;
+      localStorage.setItem('google-token_expiration', expirationTime);
+
+   
+      navigate('/');
+    }
+  }, [navigate]);
+
   const handleGoogleLogin = async () => {
     try {
-      await googleLogin();
-      navigate('/');
+      
+      window.location.href = 'https://hashimovtabriz.com.tr/api/Auth/google-login';
     } catch (error) {
-      console.error("Google girişi başarısız: ", error);
+      console.error("Google girish ugurlu: ", error);
       notification.error({
         message: 'Xəta',
-        description: 'Google girişi zamanı xəta baş verdi!',
-      });
-    }
-  };
+        description: 'Google girish zamanı xəta baş verdi!',
+      });
+    }
+  };
+
+
+
 
   return (
     <div className='login'>
@@ -101,7 +121,7 @@ function Register() {
                 onChange={(e) => {
                   const usernameValue = e.target.value;
                   setUserName(usernameValue);
-                  const emailValue = usernameValue.split('@')[0]; // username'den email'e dönüştürme mantığını değiştiriyoruz
+                  const emailValue = usernameValue.split('@')[0];
                   setEmail(emailValue);
                 }}
                 placeholder='Kullanıcı adınız'

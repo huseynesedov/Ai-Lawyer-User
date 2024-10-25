@@ -66,10 +66,10 @@ export const AuthProvider = ({ children }) => {
         console.log(res);
         setLoggedIn(true);
         localStorage.setItem('loggedIn', true);
-        navigate('/VerifyMail'); // Uğurlu qeydiyyatdan sonra yönləndirin
+        navigate('/VerifyMail');
       })
       .catch((error) => {
-        setLoggedIn(false); // Xəta baş verdikdə istifadəçini daxil olmuş kimi göstərməyin
+        setLoggedIn(false);
 
         // 409 Conflict errorunu yoxlayın
         if (error.response?.status === 409) {
@@ -94,25 +94,9 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-  const googleLogin = async (params) => {
-    setLoginLoading(true);
-    try {
-      const response = await AccountApi.googleLogin(params);
-      console.log("Google Login Response:", response);
-      setLoggedIn(true);
-      localStorage.setItem('Google loggedIn', true);
-      localStorage.setItem('Google token', response.data.token);
-      openNotification('Giriş Başarılı', 'Google ile giriş etdiniz.', false);
-    } catch (error) {
-      setLoggedIn(false);
-      openNotification('Giriş xətası', error.response?.data?.message || 'Google ile giriş edilirkən xəta yarandı.', true);
-    } finally {
-      setLoginLoading(false);
-    }
-  };
 
   return (
-    <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, googleLogin, logout, openNotification }}>
+    <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, logout, openNotification }}>
       {children}
     </AuthContext.Provider>
   );
