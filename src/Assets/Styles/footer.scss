@@ -1,0 +1,46 @@
+.Footer{
+    background-color: #fff;
+    margin-top: 237px;
+    padding: 60px 0px 0px;
+
+    
+    .footer-info{
+        padding: 0 30px ;
+    }
+    .footer-chat{
+        input::placeholder {
+            color: #ffffff;
+            opacity: 1;
+          }
+    }
+    .footer-chat input{
+        height: 40px;
+        background-color: #0F5FC2;
+        outline: none;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+        
+    }
+    .footer-chat button{
+        height: 40px;
+        background-color: #0F5FC2;
+        outline: none;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+}
+}
+
+.Footer-bottom{
+    border-top: 1px solid #0F5FC2;
+    margin-top: 60px;
+    .container{
+        padding: 19px 0;
+    }
+}
+.fc-32{
+    color: #323232D9;
+}
+

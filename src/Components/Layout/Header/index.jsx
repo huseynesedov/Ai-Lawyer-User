@@ -7,7 +7,8 @@ function Header() {
 
     return (
         <>
-            <div className="Container">
+        <header className='Header'>
+            <div className="container">
                 <div className="myNav d-flex align-items-center justify-content-between">
                     <div className="logo_SearchBar">
                         <Link to={"/"}>
@@ -42,6 +43,7 @@ function Header() {
                 </div>
 
             </div>
+        </header>
         </>
     );
 }

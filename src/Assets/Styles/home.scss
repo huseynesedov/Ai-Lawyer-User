@@ -1,8 +1,91 @@
-.gradient-color{
-    top: -80px;
-    left: 0;
-    background: linear-gradient(to bottom, #B1CFE6 ,#E2D1D100);
-    padding: 390px 767px;
-    z-index: -1;
-    border: 1px solid black;
+.Home {
+    width: 100%;
+    background: linear-gradient(1.02deg, rgb(244 244 244) 75%, #b9d6f0 95.91%);
+
 }
+.bezek1{
+    right: 77px;
+    bottom: -320px;
+    z-index: 1;
+}
+
+
+.bezek2{
+    right: 310px;
+    bottom: -343px;
+    z-index: 1;
+   
+}
+.home-hero {
+
+    .home-hero-content {
+        padding: 7rem;
+        color: #0D217A;
+
+        p {
+            color: #3E83C7;
+        }
+
+    }
+}
+
+.home-info {
+    padding: 296px 359px 20px 20px;;
+
+    .home-info-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 77px 170px;
+
+    }
+
+    .home-info-box {
+        background-color: #ffffff;
+        width: 440px;
+        height: 300px;
+        border-radius: 6px;
+
+        .home-info-box-in {
+            text-align: center;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 0;
+            .home-info-box-content {
+                padding: 5px;
+                text-align: left;
+            }
+        }
+    }
+}
+
+.ai-start {
+    display: flex;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0f5fc2;
+        color: #ffffff;
+        outline: none;
+        border: none;
+        padding: 9px 20px;
+        border-radius: 3px;
+        position: relative; /* Image'yi hareket ettirmek için gerekli */
+        overflow: hidden;
+
+        img {
+            transition: transform 0.3s ease; /* Animasyon efekti */
+        }
+
+        &:hover img {
+            transform: translateX(10px); /* Hover olduğunda sağa kaydır */
+        }
+    }
+}
+
