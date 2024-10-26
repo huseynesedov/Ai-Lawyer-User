@@ -78,7 +78,7 @@ function Register() {
 
   const handleGoogleLogin = async () => {
     try {
-      
+      localStorage.removeItem('token');
       window.location.href = 'https://hashimovtabriz.com.tr/api/Auth/google-login';
     } catch (error) {
       console.error("Google girish ugurlu: ", error);

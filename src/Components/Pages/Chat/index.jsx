@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import images from '../../../Assets/Images/js/images';
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios'; // Axios kütüphanesini import et
+import axios from 'axios';
 
 function Chat() {
-    const [decodedToken, setDecodedToken] = useState(null);
-    const [idHash, setIdHash] = useState(null);
-    const [data, setData] = useState(null);
-    const [title, setTitle] = useState(""); // Mesaj için state
-
-    const UserData = async (userIdHash) => {
-        try {
-            const response = await axios.get(`https://hashimovtabriz.com.tr/api/Chat/user-data/${userIdHash}`);
-            // Verileri işleme
-        } catch (error) {
-            if (error.response) {
-                // Sunucu cevap verdi, ama bir hata kodu ile
-                console.error("Kullanıcı verileri alınırken hata:", error.response.data);
-                console.error("Hata Kodu:", error.response.status);
-            } else if (error.request) {
-                // İstek yapıldı ama cevap alınamadı
-                console.error("İstek yapıldı ama cevap alınamadı:", error.request);
-            } else {
-                // Diğer hatalar
-                console.error("Hata oluştu:", error.message);
-            }
-        }
-    };
-
+    const [token, setToken] = useState('');
+    const [message, setMessage] = useState('');
+    const [title, setTitle] = useState('');
+    const [userId, setUserId] = useState('');
+    const [chatId] = useState(0); // chatId burada sabit değer olarak belirleniyor.
 
     useEffect(() => {
+
         const token1 = localStorage.getItem("token");
         const token2 = localStorage.getItem("google-token");
 
@@ -37,64 +19,45 @@ function Chat() {
         console.log("Kullanılacak token:", tokenToUse);
 
         if (tokenToUse) {
-            const decoded = jwtDecode(tokenToUse);
-            console.log("Decoding işlemi tamamlandı, decoded:", decoded);
-
-            setDecodedToken(decoded);
-            setIdHash(decoded?.id);
-
-            // console.log("idHash:", decoded?.id);
-
-            if (decoded?.id) {
-                UserData(decoded.id);
+            try {
+                const decoded = jwtDecode(tokenToUse);
+                console.log("Çözümleme sonrası kullanıcı ID'si:", decoded.id);
+                setUserId(decoded.id);
+                setToken(tokenToUse);
+            } catch (error) {
+                console.error("Token çözümleme hatası:", error);
             }
-            // } else {
-            //     console.error("UserIdHash bulunamadı.");
-            // }
-        } else {
-            console.error("Geçerli bir token bulunamadı.");
         }
     }, []);
 
-    const handleSendMessage = async () => {
-        console.log("Mesaj gönderme işlemi başlatıldı.");
-        if (!idHash || !title) {
-            console.error("idHash veya title boş, işlem durduruldu.");
-            return;
-        }
-
-        const token1 = localStorage.getItem("token");
-        const token2 = localStorage.getItem("google-token");
-        const tokenToUse = token1 || token2;
-
-        if (!tokenToUse) {
-            console.error("Geçerli bir token bulunamadı.");
-            return;
-        }
+    const sendTitle = async () => {
+        console.log("sendTitle çalışıyor...");
+        console.log("Gönderilecek mesaj başlığı:", message);
+        console.log("Kullanıcı ID'si:", userId);
+        console.log("Token:", token);
 
         try {
-            console.log("Gönderilen Mesaj:", title);
-            const response = await axios.post(
-                'https://hashimovtabriz.com.tr/api/Chat/create-chat',
-                {
-                    idHash,
-                    title,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${tokenToUse}`,
-                        'Content-Type': 'application/json',
-                    },
+            const response = await axios.post('https://hashimovtabriz.com.tr/api/Chat/send-message', {
+                title: message,
+                userId: userId,
+                chatId: chatId,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            );
-            console.log("Mesaj Gönderildi:", title);
-            console.log("API'den Gelen Yanıt:", response.data);
-            setTitle("");
+            });
+
+            console.log('Mesaj gönderildi:', response.data);
+            setMessage('');
         } catch (error) {
-            console.error("Mesaj gönderirken hata:", error);
+            if (error.response) {
+                console.error('Hata Kodu:', error.response.status);
+                console.error('Hata Mesajı:', error.response.data); // Backend'den gelen hata mesajı
+            } else {
+                console.error('İstek hatası:', error.message);
+            }
         }
     };
-
 
 
     return (
@@ -126,20 +89,46 @@ function Chat() {
                                 </div>
                             </div>
                             <div className="userHello d-flex align-items-center">
-                                <span>Xoş Gəlmisiniz , <span className='fs-20'>{data?.UserName}</span></span>
+                                <span>Xoş Gəlmisiniz , <span className='fs-20'>{sendTitle?.userName}</span></span>
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-1 borderr h-100vhh" style={{ width: "890px" }}>
-                        <div className="input d-flex">
+                    <div className="col-xl-1 d-flex flex-column my-5 justify-content-between" style={{ width: "890px" }}>
+                        <div className="h-100 d-flex flex-column justify-content-end ">
+
+                            <div className="d-flex justify-content-end">
+                                <div className="boxRight mb-4 me-2">
+                                    <span className='fs-20 fw-400' >Thank you ;)</span>
+                                    <div className="blue-part"></div>
+                                </div>
+                            </div>
+
+
+                            <div className="d-flex align-items-start position-relative">
+                                <div className='d-flex justify-content-end botImg'>
+                                    <img src={images.bot} alt="" />
+                                </div>
+                                <div className="boxLeft mb-4 me-2">
+                                    <div className="blue-part2"></div>
+                                    <span className='fs-20 fw-400' >
+                                        istinctio quam, consequatur eos autem iusto commodi at!
+                                    </span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div className="input d-flex justify-content-between">
                             <input
                                 type="text"
-                                className='borderr'
+                                className='input-chat'
                                 placeholder='Yeni mesaj yaz...'
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
                             />
-                            <button onClick={handleSendMessage} className='btn btn-primary ms-2'>Gönder</button>
+                            <div className='' onClick={sendTitle} style={{ cursor: "pointer" }}>
+                                <img src={images.send} alt="" />
+                            </div>
                         </div>
                     </div>
                 </div>

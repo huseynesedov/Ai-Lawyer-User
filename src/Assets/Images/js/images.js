@@ -8,6 +8,8 @@ import bezek_2 from '../1.svg';
 import homburger from '../List.svg';
 import plus from '../Plus.svg';
 import arrowdown from '../CaretDown.svg';
+import send from '../Send.svg';
+import bot from '../Frame 436.svg';
 
 
 import homecard1 from '../homecard1.svg'
@@ -26,7 +28,9 @@ export default {
     homburger,
     plus,
     arrowdown,
-    
+    send,
+    bot,
+
     homecard1,
     homecard2,
     homecard3
