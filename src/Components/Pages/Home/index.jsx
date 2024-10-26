@@ -1,5 +1,6 @@
 import React from 'react';
 import images from '../../../Assets/Images/js/images';
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,10 +18,12 @@ function Home() {
                                     <p className='mt-4'>Bahalı hüquq məsləhətləri, görüşlər üçün uzun müddət gözləmələr və çaşqın hüquqi mətnlərlə vidalaşın.</p>
                                 </div>
                                 <div className='ai-start'>
-                                    <button>
-                                        Çata başla
-                                        <img className='ms-1' src={images.arrowright} alt="" />
-                                    </button>
+                                    <Link to={"/Chat"}>
+                                        <button>
+                                            Çata başla
+                                            <img className='ms-1' src={images.arrowright} alt="" />
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

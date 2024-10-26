@@ -5,6 +5,9 @@ import mail from '../Frame 2.svg';
 import arrowright from '../ArrowRight.svg';
 import bezek_1 from '../Group 74.svg';
 import bezek_2 from '../1.svg';
+import homburger from '../List.svg';
+import plus from '../Plus.svg';
+import arrowdown from '../CaretDown.svg';
 
 
 import homecard1 from '../homecard1.svg'
@@ -20,7 +23,10 @@ export default {
     arrowright,
     bezek_1,
     bezek_2, 
-
+    homburger,
+    plus,
+    arrowdown,
+    
     homecard1,
     homecard2,
     homecard3

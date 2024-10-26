@@ -1,15 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
+import { Spin } from "antd";
+import { useAuth } from "../../../AuthContext";
+
+import Header from "../../Layout/Header/index";
+import Footer from "../../Layout/Footer/index";
 
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login/login";
 import Register from "../../Pages/Login/user-create";
-import Header from "../../Layout/Header/index";
-import Footer from "../../Layout/Footer/index";
-import { Spin } from "antd";
-import { useAuth } from "../../../AuthContext";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
+import Chat from "../../Pages/Chat/index";
+
+
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -56,6 +60,14 @@ const RouteList = () => {
           element={
             <Spin spinning={loginLoading} tip="Loading...">
               <Mail />
+            </Spin>
+          }
+        />
+        <Route
+          path="/Chat"
+          element={
+            <Spin spinning={loginLoading} tip="Loading...">
+              <Chat />
             </Spin>
           }
         />
