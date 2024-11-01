@@ -10,6 +10,7 @@ import { Spin } from "antd";
 import { useAuth } from "../../../AuthContext";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
+import Faq from "../../Pages/Faq";
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -23,6 +24,16 @@ const RouteList = () => {
             <>
               <Header />
               <Home />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Faq"
+          element={
+            <>
+              <Header />
+              <Faq />
               <Footer />
             </>
           }

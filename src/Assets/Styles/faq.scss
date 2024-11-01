@@ -1,0 +1,22 @@
+.Faq{
+    background-color: #f4f4f4;
+    .Faq-header{
+        margin: 4rem 0;
+        color:#0D217A;
+    }
+}
+.details-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0px 50px;
+    details{
+        background-color: #fff;
+        padding: 10px;
+        border-left: 5px solid #A9D4FF;
+        border-radius: 5px;
+        p{
+            padding: 20px 40px 0 10px;
+        }
+}
+}
