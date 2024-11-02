@@ -12,6 +12,7 @@ import Register from "../../Pages/Login/user-create";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
 import Chat from "../../Pages/Chat/index";
+import Faq from "../../Pages/";
 
 
 
@@ -27,6 +28,16 @@ const RouteList = () => {
             <>
               <Header />
               <Home />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Faq"
+          element={
+            <>
+              <Header />
+              <Faq />
               <Footer />
             </>
           }
