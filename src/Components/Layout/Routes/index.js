@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import React from "react";
 
 import Home from "../../Pages/Home";
+import Faq from "../../Pages/Faq";
 import Login from "../../Pages/Login/login";
 import Register from "../../Pages/Login/user-create";
 import Header from "../../Layout/Header/index";
@@ -10,7 +11,8 @@ import { Spin } from "antd";
 import { useAuth } from "../../../AuthContext";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
-import Faq from "../../Pages/Faq";
+import Bloq from "../../Pages/Bloq";
+
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -34,6 +36,16 @@ const RouteList = () => {
             <>
               <Header />
               <Faq />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Bloq"
+          element={
+            <>
+              <Header />
+              <Bloq />
               <Footer />
             </>
           }

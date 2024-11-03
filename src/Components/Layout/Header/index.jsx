@@ -25,7 +25,7 @@ function Header() {
                             <Link to={"/Faq"}>
                                 <li>FAQ</li>
                             </Link>
-                            <Link to={""}>
+                            <Link to={"/Bloq"}>
                                 <li>Bloq</li>
                             </Link>
                             <Link to={""}>
