@@ -6,7 +6,9 @@
     box-sizing: border-box;
 
 }
-
+.gradientFaq{
+    background: linear-gradient(1.02deg, rgb(244, 244, 244) 75%, #b9d6f0 95.91%);
+}
 :root{
     --main-bg-gray: #F4F4F4;
 

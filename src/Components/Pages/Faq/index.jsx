@@ -2,7 +2,7 @@ import React from 'react'
 
 function Faq() {
   return (
-    <div className='Faq'>
+    <div className='Faq gradientFaq'>
       <div className="container">
         <div className="row">
           <div className="col-xl-12">
@@ -11,7 +11,7 @@ function Faq() {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row d-flex align-items-center justify-content-center">
           <div className="col-xl-6">
             <div className="details-box">
               <details>

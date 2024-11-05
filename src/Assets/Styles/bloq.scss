@@ -1,25 +1,56 @@
-.Bloq{
-    padding: 5rem 0;
+.Bloq {
     background-color: #f4f4f4;
-    .bloq-header{
+    background: linear-gradient(1.02deg, rgb(244, 244, 244) 75%, #b9d6f0 95.91%);
+    
+    .container{
+        padding: 5rem 0;
+    }
+    .bloq-header {
         margin-bottom: 40px;
         color: #0D217A;
     }
-    .bloq-box{ 
+
+    .bloq-box {
         margin: 20px 0;
         background-color: #fff;
         border-radius: 10px;
-        .bloq-card-img{
+
+        .bloq-card-img {
             width: 100%;
         }
+
         .bloq-box-content {
-            padding: 10px 100px 10px 10px;
+            padding: 16px 19px 10px 25px;
         }
-        .bloq-box-info{
-            
-            padding: 10px 10px;
+
+        .bloq-box-info {
+
+            padding: 20px 25px;
             display: flex;
             justify-content: space-between;
         }
+    }
 }
+
+.bloq-box-info-time {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        margin-right: 5px;
+    }
+}
+
+.bloq-box-info-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
