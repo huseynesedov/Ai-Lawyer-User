@@ -6,6 +6,7 @@ import App from './App'
 
 import "./Assets/Styles/home.scss"
 import "./Assets/Styles/faq.scss"
+import "./Assets/Styles/bloq.scss"
 import "./Assets/Styles/navbar.scss"
 import "./Assets/Styles/login.scss"
 import "./Assets/Styles/footer.scss"

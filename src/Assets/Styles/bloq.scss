@@ -1,0 +1,25 @@
+.Bloq{
+    padding: 5rem 0;
+    background-color: #f4f4f4;
+    .bloq-header{
+        margin-bottom: 40px;
+        color: #0D217A;
+    }
+    .bloq-box{ 
+        margin: 20px 0;
+        background-color: #fff;
+        border-radius: 10px;
+        .bloq-card-img{
+            width: 100%;
+        }
+        .bloq-box-content {
+            padding: 10px 100px 10px 10px;
+        }
+        .bloq-box-info{
+            
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+}
+}

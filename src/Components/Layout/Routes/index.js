@@ -7,12 +7,14 @@ import Header from "../../Layout/Header/index";
 import Footer from "../../Layout/Footer/index";
 
 import Home from "../../Pages/Home";
+import Faq from "../../Pages/Faq";
 import Login from "../../Pages/Login/login";
 import Register from "../../Pages/Login/user-create";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
-import Faq from "../../Pages/Faq";
+import Bloq from "../../Pages/Bloq";
 import Chat from "../../Pages/Chat";
+
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -36,6 +38,16 @@ const RouteList = () => {
             <>
               <Header />
               <Faq />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Bloq"
+          element={
+            <>
+              <Header />
+              <Bloq />
               <Footer />
             </>
           }
