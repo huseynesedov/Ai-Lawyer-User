@@ -20,10 +20,10 @@ function Header() {
 
                     <div className='d-flex nav_menu'>
                         <ul>
-                            <Link to={""}>
+                            <Link to={"/"}>
                                 <li>Ana Səhifə</li>
                             </Link>
-                            <Link to={""}>
+                            <Link to={"/Faq"}>
                                 <li>FAQ</li>
                             </Link>
                             <Link to={""}>

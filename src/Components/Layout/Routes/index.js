@@ -11,10 +11,8 @@ import Login from "../../Pages/Login/login";
 import Register from "../../Pages/Login/user-create";
 import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
-import Chat from "../../Pages/Chat/index";
-import Faq from "../../Pages/";
-
-
+import Faq from "../../Pages/Faq";
+import Chat from "../../Pages/Chat";
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
