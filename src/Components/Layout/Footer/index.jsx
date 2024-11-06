@@ -20,12 +20,12 @@ function Footer() {
                         </div>
                     </div>
                     <div className="col-xl-2">
-                            <Link to={""}>
+                            <Link to={"/Faq"}>
                                 <h5>FAQ</h5>
                             </Link>
                     </div>
                     <div className="col-xl-2">
-                        <Link to={""}>
+                        <Link to={"/Kontakt"}>
                                 <h5>Kontakt</h5>
                             </Link>
                     </div>
