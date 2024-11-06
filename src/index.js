@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App'
 
 import "./Assets/Styles/home.scss"
+import "./Assets/Styles/kontakt.scss"
 import "./Assets/Styles/faq.scss"
 import "./Assets/Styles/bloq.scss"
 import "./Assets/Styles/navbar.scss"

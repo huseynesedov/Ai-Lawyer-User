@@ -32,16 +32,16 @@ export const apiRoutes = {
     },
 
     ContactForm: {
-        submitForm:"/api/ContactForm/SubmitForm"
+        submitForm: "/api/ContactForm/SubmitForm"
     },
 
-    UserManagement:{
+    UserManagement: {
         getAllUsers: '/api/UserManagement/get-all-users',
         getUser: '/api/UserManagement/get-user/{userId}',
         grantAdminStatus: '/api/UserManagement/grant-admin-status/{userId}',
         removeAdminStatus: '/api/UserManagement/remove-admin-status/{userId}',
         updateUser: '/api/UserManagement/update-user/{userId}',
-        
+
     }
 
 };

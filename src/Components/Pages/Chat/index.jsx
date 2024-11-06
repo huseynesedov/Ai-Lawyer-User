@@ -1,63 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import images from '../../../Assets/Images/js/images';
-import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
 
 function Chat() {
-    const [token, setToken] = useState('');
-    const [message, setMessage] = useState('');
-    const [title, setTitle] = useState('');
-    const [userId, setUserId] = useState('');
-    const [chatId] = useState(0); // chatId burada sabit değer olarak belirleniyor.
-
-    useEffect(() => {
-
-        const token1 = localStorage.getItem("token");
-        const token2 = localStorage.getItem("google-token");
-
-        const tokenToUse = token1 || token2;
-        console.log("Kullanılacak token:", tokenToUse);
-
-        if (tokenToUse) {
-            try {
-                const decoded = jwtDecode(tokenToUse);
-                console.log("Çözümleme sonrası kullanıcı ID'si:", decoded.id);
-                setUserId(decoded.id);
-                setToken(tokenToUse);
-            } catch (error) {
-                console.error("Token çözümleme hatası:", error);
-            }
-        }
-    }, []);
-
-    const sendTitle = async () => {
-        console.log("sendTitle çalışıyor...");
-        console.log("Gönderilecek mesaj başlığı:", message);
-        console.log("Kullanıcı ID'si:", userId);
-        console.log("Token:", token);
-
-        try {
-            const response = await axios.post('https://hashimovtabriz.com.tr/api/Chat/send-message', {
-                title: message,
-                userId: userId,
-                chatId: chatId,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            console.log('Mesaj gönderildi:', response.data);
-            setMessage('');
-        } catch (error) {
-            if (error.response) {
-                console.error('Hata Kodu:', error.response.status);
-                console.error('Hata Mesajı:', error.response.data); // Backend'den gelen hata mesajı
-            } else {
-                console.error('İstek hatası:', error.message);
-            }
-        }
-    };
 
 
     return (
@@ -89,7 +33,7 @@ function Chat() {
                                 </div>
                             </div>
                             <div className="userHello d-flex align-items-center">
-                                <span>Xoş Gəlmisiniz , <span className='fs-20'>{sendTitle?.userName}</span></span>
+                                <span>Xoş Gəlmisiniz , <span className='fs-20'></span></span>
                             </div>
                         </div>
                     </div>
@@ -123,10 +67,8 @@ function Chat() {
                                 type="text"
                                 className='input-chat'
                                 placeholder='Yeni mesaj yaz...'
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
                             />
-                            <div className='' onClick={sendTitle} style={{ cursor: "pointer" }}>
+                            <div style={{ cursor: "pointer" }}>
                                 <img src={images.send} alt="" />
                             </div>
                         </div>

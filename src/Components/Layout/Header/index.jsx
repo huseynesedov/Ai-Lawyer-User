@@ -29,7 +29,7 @@ function Header() {
                             <Link to={"/Bloq"}>
                                 <li>Bloq</li>
                             </Link>
-                            <Link to={""}>
+                            <Link to={"/Kontakt"}>
                                 <li>Kontakt</li>
                             </Link>
                         </ul>

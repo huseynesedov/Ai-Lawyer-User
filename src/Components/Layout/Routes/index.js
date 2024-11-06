@@ -14,6 +14,7 @@ import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
 import Bloq from "../../Pages/Bloq";
 import Chat from "../../Pages/Chat";
+import Kontakt from "../../Pages/Kontakt";
 
 
 const RouteList = () => {
@@ -48,6 +49,16 @@ const RouteList = () => {
             <>
               <Header />
               <Bloq />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Kontakt"
+          element={
+            <>
+              <Header />
+              <Kontakt />
               <Footer />
             </>
           }

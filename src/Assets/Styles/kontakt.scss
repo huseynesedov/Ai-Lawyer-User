@@ -1,0 +1,44 @@
+.Kontakt{
+    padding: 5rem 0;
+    background-color: #f4f4f4;
+    .kontakt-header{
+        color: #0D217A;
+        font-size: 3rem;
+
+    }
+    .kontakt-img{
+        width: 100%;
+    }
+
+    .kontakt-main{
+        padding: 8rem 0;
+        color: #0D217A;
+        font-size: 2rem;
+    }
+    .input::placeholder{
+        color: #3d3d3d;
+    }
+    .input{
+        padding: 10px 20px;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #000;
+}
+    .message-input{
+        padding: 0px 10px 50px;
+        width: 88%;
+        height: 120px;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #000;
+    }
+    .message-send-btn{
+        padding: 12px 70px;
+        background-color: #0F5FC2;
+        color: #fff;
+        font-size: 20px;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+}
+}

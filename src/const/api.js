@@ -28,11 +28,11 @@ export const BaseApi = {
 
         return axios.get(fullUrl, config).then(response => response.data);
     },
-    post(url, params , queryParams) {
+    post(url, params ,data, queryParams) {
         let fullUrl = `${BASE_URL}${url}`;
         let config = createJsonConfig(queryParams);
 
-        return axios.post(fullUrl, params, config).then(response => response.data);
+        return axios.post(fullUrl, params,data, config).then(response => response.data);
     },
     delete(url, params) {
         let fullUrl = `${BASE_URL}${url}`;
