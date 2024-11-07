@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
+import { useNavigate  } from 'react-router-dom'; // React Router için yönlendirme
+import Cookies from 'js-cookie'; // js-cookie kütüphanesini import edin
 import { notification } from 'antd';
-import axios from 'axios';
+import { AccountApi } from '../../../api/account.api';
 
 function Forgot() {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // useNavigate kullanarak yönlendirme yapıyoruz
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    // Email'i cookie'ye kaydet
+    Cookies.set('email', email);
+
     try {
-      const response = await axios.post('https://hashimovtabriz.com.tr/api/Auth/resetPasswordSendOtp', {
-        email, // Make sure this key matches what the server expects
+      const response = await AccountApi.resetPasswordSendOtp(email);
+      notification.success({
+        message: 'Başarıyla Gönderildi',
+        description: 'E-posta şifrə sıfırlama kodu gönderildi. 3 Sanie sonra OTP seyfesine yonlendireleceksiz!',
       });
 
-      notification.success({
-        message: 'Success',
-        description: 'An email has been sent to reset your password.',
-      });
+      // 5 saniye sonra başka bir sayfaya yönlendirme
+      setTimeout(() => {
+        navigate('/Otp'); // Yönlendireceğiniz sayfanın yolu
+      }, 3000); // 3 saniye bekle
+
     } catch (error) {
-      const emailErrors = error.response?.data?.errors?.email;
-      const errorMessage = emailErrors
-        ? emailErrors.join(', ') // Combine any email-related errors into a string
-        : 'An error occurred while trying to send the email.';
-      
       notification.error({
-        message: 'Error',
-        description: errorMessage,
+        message: 'Bir hata oluştu',
+        description: 'Şifre sıfırlama isteği gönderilemedi. Lütfen tekrar deneyin.',
       });
-      
-      // Log detailed error information
-      console.error('Email Validation Errors:', emailErrors);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,12 +49,15 @@ function Forgot() {
                 <p>Email</p>
                 <input
                   type="email"
+                  name='email'
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)} // Input değeri güncelle
                   required
                 />
               </label>
-              <button type='submit' className='forgot-btn'>Göndər</button>
+              <button type='submit' className='forgot-btn' disabled={loading}>
+                {loading ? 'Gönderiliyor...' : 'Gönder'}
+              </button>
             </form>
           </div>
         </div>

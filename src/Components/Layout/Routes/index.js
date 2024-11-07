@@ -15,6 +15,8 @@ import Mail from "../../Pages/Login/mailcontrol";
 import Bloq from "../../Pages/Bloq";
 import Chat from "../../Pages/Chat";
 import Kontakt from "../../Pages/Kontakt";
+import Otp from "../../Pages/Login/otp";
+import ResetPassword from "../../Pages/Login/resetPassword";
 
 
 const RouteList = () => {
@@ -76,6 +78,22 @@ const RouteList = () => {
           element={
             <Spin spinning={loginLoading} tip="Loading...">
               <Register />
+            </Spin>
+          }
+        />
+        <Route
+          path="/Otp"
+          element={
+            <Spin spinning={loginLoading} tip="Loading...">
+              <Otp />
+            </Spin>
+          }
+        />
+        <Route
+          path="/resetPassword"
+          element={
+            <Spin spinning={loginLoading} tip="Loading...">
+              <ResetPassword />
             </Spin>
           }
         />

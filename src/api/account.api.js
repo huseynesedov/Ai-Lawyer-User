@@ -13,19 +13,23 @@ export const AccountApi = {
     sendOtpToWhatsApp(phoneId) {
         return BaseApi.post(apiRoutes.Auth.sendOtpToWhatsApp, { data: { id: phoneId } });
     },
-    resetPasswordSendOtp(params) {
-        return BaseApi.post(apiRoutes.Auth.resetPasswordSendOtp, { ...params });
+
+
+    // account.api.js
+    resetPasswordSendOtp(email) {
+        return BaseApi.post(`${apiRoutes.Auth.resetPasswordSendOtp}${email}`); // Sade bir yapı ile gönderim
     },
+
+
+
     resetPasswordWithOtp(params) {
-        return BaseApi.post(`${apiRoutes.Auth.resetPasswordWithOtp}?email=${params.email}&otpCode=${params.otpCode}`);
+        return BaseApi.post(`${apiRoutes.Auth.resetPasswordWithOtp}?email=${params.email}&otpCode=${params.otpCode}`, params);
     },
     verifyOtp(params) {
-        return BaseApi.post(`${apiRoutes.Auth.verifyOtp}?email=${params.email}&otpCode=${params.otpCode}`);
+        return BaseApi.post(`${apiRoutes.Auth.verifyOtp}?email=${encodeURIComponent(params.email)}&otpCode=${encodeURIComponent(params.otpCode)}`);
     },
     resetPasswordSendEmail(emailId) {
-        const payload = { email: emailId };
-        console.log('Payload being sent:', payload); // Gönderilecek veriyi loglayın
-        return BaseApi.post(apiRoutes.Auth.resetPasswordSendEmail, payload);
+        return BaseApi.post(apiRoutes.Auth.resetPasswordSendEmail, emailId);
     },
 
     resetPassword(params) {
@@ -46,7 +50,11 @@ export const AccountApi = {
     },
 
     Login(data) {
-        console.log(data)
         return BaseApi.post(apiRoutes.Auth.login, data);
     },
+    submitForm(data) {
+        return BaseApi.post(apiRoutes.ContactForm.submitForm, data);
+    },
+
+
 };

@@ -13,7 +13,7 @@ export const apiRoutes = {
         register: '/api/Auth/register',
         verifyEmail: '/api/Auth/verifyEmail',
         sendOtpToWhatsApp: '/api/Auth/sendOtpToWhatsApp',
-        resetPasswordSendOtp: '/api/Auth/resetPasswordSendOtp',
+        resetPasswordSendOtp: '/api/Auth/resetPasswordSendOtp?email=',
         resetPasswordWithOtp: '/api/Auth/resetPasswordWithOtp',
         verifyOtp: '/api/Auth/verifyOtp',
         resetPasswordSendEmail: '/api/Auth/resetPasswordSendEmail',
