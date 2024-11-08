@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom'; // React Router için yönlendirme
+import { useNavigate } from 'react-router-dom'; // React Router için yönlendirme
 import Cookies from 'js-cookie'; // js-cookie kütüphanesini import edin
 import { notification } from 'antd';
 import { AccountApi } from '../../../api/account.api';
@@ -7,31 +7,45 @@ import { AccountApi } from '../../../api/account.api';
 function Forgot() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // useNavigate kullanarak yönlendirme yapıyoruz
+  const navigate = useNavigate(); 
+
+  const isValidGmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return regex.test(email);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    // Email'i cookie'ye kaydet
+
+
+    if (!isValidGmail(email)) {
+      notification.error({
+        message: 'Xətalı E-posta',
+        description: 'Xaiş olunur bir Gmail adresi yazın.',
+      });
+      setLoading(false);
+      return;
+    }
+
     Cookies.set('email', email);
 
     try {
       const response = await AccountApi.resetPasswordSendOtp(email);
       notification.success({
-        message: 'Başarıyla Gönderildi',
-        description: 'E-posta şifrə sıfırlama kodu gönderildi. 3 Sanie sonra OTP seyfesine yonlendireleceksiz!',
+        message: 'Başarıyla Göndərildi',
+        description: 'E-posta şifrə sıfırlama kodu göndərildi. 1 saniye sonra OTP səyfəsinə yönləndiriləcəksiniz!',
       });
 
-      // 5 saniye sonra başka bir sayfaya yönlendirme
       setTimeout(() => {
-        navigate('/Otp'); // Yönlendireceğiniz sayfanın yolu
-      }, 3000); // 3 saniye bekle
+        navigate('/Otp');
+      }, 1000); 
 
     } catch (error) {
       notification.error({
-        message: 'Bir hata oluştu',
-        description: 'Şifre sıfırlama isteği gönderilemedi. Lütfen tekrar deneyin.',
+        message: 'Bir xəta oldu',
+        description: 'Şifre sıfırlama göndəriləmədi. Xaiş olunur yenidən yoxlayın.',
       });
     } finally {
       setLoading(false);
@@ -40,7 +54,7 @@ function Forgot() {
 
   return (
     <div>
-      <div className='forgot'>
+      <div className='forgot mt-5'>
         <div className="forgot-in">
           <div className="forgot-box">
             <h2>Şifrəni bərpa et</h2>
@@ -55,8 +69,8 @@ function Forgot() {
                   required
                 />
               </label>
-              <button type='submit' className='forgot-btn' disabled={loading}>
-                {loading ? 'Gönderiliyor...' : 'Gönder'}
+              <button type='submit' className='forgot-btn mt-2' disabled={loading}>
+                {loading ? 'Göndərilir...' : 'Göndər'}
               </button>
             </form>
           </div>

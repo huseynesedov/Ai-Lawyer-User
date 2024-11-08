@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext';
-import images from '../../../Assets/Images/js/images';
+import images from '../../../Assets/Images/js/images'; // Your images import
 import { notification } from 'antd';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the icons
 
 function Register() {
   const { register } = useAuth();
@@ -14,6 +15,8 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const validatePassword = (password) => {
     const hasUpperCase = /[A-Z]/.test(password);
@@ -45,7 +48,7 @@ function Register() {
     if (!validatePassword(password)) {
       notification.error({
         message: 'Xəta',
-        description: 'Şifrə ən az bir böyük hərf, bir kiçik hərf, bir rəqəm və bir xüsusi simvol içerməlidir.',
+        description: 'Parol zəifdir. Parolun ən azı bir böyük hərf, bir kiçik hərf, bir rəqəm və bir xüsusi simvol daxil etməsi lazımdır',
       });
       return;
     }
@@ -59,25 +62,22 @@ function Register() {
       });
   };
 
-
   useEffect(() => {
-    // urldan tokeni aliriq
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
 
     if (token) {
-    
       localStorage.setItem('google-token', token);
       const expirationTime = new Date().getTime() + 12 * 60 * 60 * 1000;
       localStorage.setItem('google-token_expiration', expirationTime);
 
-   
       navigate('/');
     }
   }, [navigate]);
 
   const handleGoogleLogin = async () => {
     try {
+      
       localStorage.removeItem('token');
       window.location.href = 'https://hashimovtabriz.com.tr/api/Auth/google-login';
     } catch (error) {
@@ -85,22 +85,19 @@ function Register() {
       notification.error({
         message: 'Xəta',
         description: 'Google girish zamanı xəta baş verdi!',
-      });
-    }
-  };
-
-
-
+      });
+    }
+  };
 
   return (
-    <div className='login'>
+    <div className='login mt-5'>
       <div className="login-in">
         <div className="login-box">
           <h2>Hesaba Yaradın</h2>
 
           <form onSubmit={handleRegister}>
             <label>
-              <p className='fs-12'>Adınız</p>
+              <p className='fs-12 bck'>Adınız</p>
               <input
                 type="text"
                 value={fullName}
@@ -109,12 +106,11 @@ function Register() {
                   setFullName(nameValue);
                   setLastName(nameValue);
                 }}
-                placeholder="Adınızı yazın"
               />
             </label>
 
             <label>
-              <p className='fs-12'>Email</p>
+              <p className='fs-12 bck'>Email</p>
               <input
                 type="text"
                 value={userName}
@@ -124,28 +120,33 @@ function Register() {
                   const emailValue = usernameValue.split('@')[0];
                   setEmail(emailValue);
                 }}
-                placeholder='Kullanıcı adınız'
               />
             </label>
 
             <label>
-              <p className='fs-12'>Şifrə</p>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder='***********'
-              />
+              <p className='fs-12 bck'>Şifrə</p>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder='***********'
+                />
+                <span className='eye' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer', marginLeft: '8px' }}>
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </span>
             </label>
 
             <label>
-              <p className='fs-12'>Şifrənizi yeniden yazın</p>
-              <input
-                type="password"
-                value={rePassword}
-                onChange={(e) => setRePassword(e.target.value)}
-                placeholder='***********'
-              />
+              <p className='fs-12 bck'>Şifrənizi yeniden yazın</p>
+                <input
+                  type={showPassword2 ? 'text' : 'password'}
+                  value={rePassword}
+                  onChange={(e) => setRePassword(e.target.value)}
+                  placeholder='***********'
+                />
+                <span className='eye' onClick={() => setShowPassword2(!showPassword2)} style={{ cursor: 'pointer', marginLeft: '8px' }}>
+                  {showPassword2 ? <FaEye /> : <FaEyeSlash />}
+                </span>
             </label>
 
             <button className='sign-in'>Hesab Yarat</button>
@@ -161,7 +162,7 @@ function Register() {
           </button>
 
           <span className='fs-12 d-flex justify-content-center loginn'>
-            <p>Artıq hesabınız var?</p>
+            <p>Hesabınız var?</p>
             <Link to={"/Login"}>
               <span className='fw-700 ms-2'>Daxil Ol</span>
             </Link>

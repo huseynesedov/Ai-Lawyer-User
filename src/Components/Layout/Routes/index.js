@@ -11,7 +11,6 @@ import Faq from "../../Pages/Faq";
 import Login from "../../Pages/Login/login";
 import Register from "../../Pages/Login/user-create";
 import Forgot from "../../Pages/Login/forgot";
-import Mail from "../../Pages/Login/mailcontrol";
 import Bloq from "../../Pages/Bloq";
 import Chat from "../../Pages/Chat";
 import Kontakt from "../../Pages/Kontakt";
@@ -105,14 +104,7 @@ const RouteList = () => {
             </Spin>
           }
         />
-        <Route
-          path="/VerifyMail"
-          element={
-            <Spin spinning={loginLoading} tip="Loading...">
-              <Mail />
-            </Spin>
-          }
-        />
+       
         <Route
           path="/Chat"
           element={

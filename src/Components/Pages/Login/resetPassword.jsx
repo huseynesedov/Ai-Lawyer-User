@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
 import { Input, Button, Form, notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie'; 
+import Cookies from 'js-cookie';
 import { AccountApi } from '../../../api/account.api';
+
+// Password validation function
+const validatePassword = (password) => {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()\-_=+\{\}\[\]:;"'<>,.?\/\\`~]/.test(password);
+    return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+};
 
 function ResetPassword() {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
 
-    // Handle password reset
     const handleResetPassword = async () => {
         const email = Cookies.get('email');
         const otpCode = Cookies.get('otpCode');
-        const password = newPassword; // map to the correct field
-        const rePassword = confirmPassword; // map to the correct field
-    
-        // Ensure both password fields are identical
+        const password = newPassword;
+        const rePassword = confirmPassword;
+
+        // Password and rePassword validation
         if (password !== rePassword) {
             notification.error({
                 message: 'Xəta !',
@@ -24,16 +32,25 @@ function ResetPassword() {
             });
             return;
         }
-    
-        // Check if the required data is available
-        if (!email || !otpCode || !password || !rePassword) {
-            notification.error({
+
+        if (!password || !rePassword) {
+            notification.info({
                 message: 'Xəta !',
                 description: 'Tələb olunan sahələr çatışmır!',
             });
             return;
         }
-    
+
+        // Validate password strength
+        if (!validatePassword(password)) {
+            notification.error({
+                message: 'Xəta !',
+                description: 'Parol zəifdir. Parolun ən azı bir böyük hərf, bir kiçik hərf, bir rəqəm və bir xüsusi simvol daxil etməsi lazımdır : ( Example123!)',
+                duration: 10,
+            });
+            return;
+        }
+
         try {
             const response = await AccountApi.resetPasswordWithOtp({
                 email,
@@ -41,37 +58,49 @@ function ResetPassword() {
                 password,
                 rePassword,
             });
-        
+
             if (response.status === 200) {
+                notification.error({
+                    message: 'Xəta',
+                    description: 'Parol uğurla sıfırlana bilmedi!',
+                });
+            } else {
                 notification.success({
                     message: 'Uğurlu',
                     description: 'Parol uğurla sıfırlandı!',
                 });
-                history.push('/Login');
+                Cookies.remove('otpCode');
+                navigate('/Login');
             }
         } catch (error) {
-            console.error("Error response:", error.response);  // Log the full error response
             notification.error({
-                message: 'Error',
-                description: error.response?.data?.message || 'Failed to reset password. Please try again.',
+                message: 'Xəta',
+                description: 'Bir problem meydana gəldi, zəhmət olmasa yenidən cəhd edin!',
             });
         }
-        
     };
-    
 
     return (
-        <div className='login'>
-            <div className="login-in">
+        <div className='login2 mt-5'>
+            <div className="login-in mt-5">
                 <div className="login-box">
-                    <h2>Hesaba giriş</h2>
-                    <Form onFinish={handleResetPassword}>
+                    <h2>Şifrəni sıfırla</h2>
+                    <Form
+                        onFinish={handleResetPassword}
+                        layout="vertical" // Set form layout to vertical
+                        initialValues={{
+                            newPassword: newPassword,
+                            confirmPassword: confirmPassword,
+                        }}
+                    >
                         <Form.Item
                             name="newPassword"
-                            rules={[{ required: true, message: 'Please input your new password!' }]}
+                            label="Şifrə"
+                            rules={[{ required: true, message: 'Zəhmət olmasa yeni parolunuzu daxil edin!' }]}
                         >
                             <Input.Password
                                 placeholder='*******'
+                                style={{ width: "380px", height: "45px" }}
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 autoComplete="current-password"
@@ -80,18 +109,20 @@ function ResetPassword() {
 
                         <Form.Item
                             name="confirmPassword"
-                            rules={[{ required: true, message: 'Please confirm your new password!' }]}
+                            label="Yenidən Şifrə"
+                            rules={[{ required: true, message: 'Zəhmət olmasa yeni parolunuzu yeniden daxil edin!' }]}
                         >
                             <Input.Password
                                 placeholder='*******'
+                                style={{ width: "380px", height: "45px" }}
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 autoComplete="current-password"
                             />
                         </Form.Item>
 
-                        <Button type="primary" htmlType="submit" className='sign-inn'>
-                            Daxil ol
+                        <Button type="primary" htmlType="submit" className='sign-inn2'>
+                            Şifrəni sıfırla
                         </Button>
                     </Form>
                 </div>

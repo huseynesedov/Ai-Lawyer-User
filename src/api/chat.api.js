@@ -3,16 +3,16 @@ import { apiRoutes } from "../const/apiroute";
 
 
 export const ChatApi = {
-    sendMessage(data) {
-        return BaseApi.post(apiRoutes.Chat.sendMessage, data);
+    sendMessage(params) {
+        return BaseApi.post(apiRoutes.Chat.sendMessage, params);
     },
     getChats(userId) {
-        return BaseApi.get(apiRoutes.Chat.getChats, { data: { id: userId } });
+        return BaseApi.get(`${apiRoutes.Chat.getChats}${userId}`);
     },
     createChat(data) {
-        return BaseApi.post(apiRoutes.Chat.createChat, data);
+        return BaseApi.post(apiRoutes.Chat.createChat, data );
     },
     getMessages(chatId) {
-        return BaseApi.get(apiRoutes.Chat.getMessages, { data: { id: chatId } });
+        return BaseApi.get(`${apiRoutes.Chat.getMessages}${chatId}`);
     },
 };

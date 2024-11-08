@@ -26,9 +26,9 @@ export const apiRoutes = {
 
     Chat: {
         sendMessage: '/api/Chat/send-message',
-        getChats: '/api/Chat/get-chats',
+        getChats: '/api/Chat/get-chats?UserId=',
         createChat: '/api/Chat/create-chat',
-        createChat: '/api/Chat/get-messages/{chatId}',
+        getMessages: '/api/Chat/get-messages/',
     },
 
     ContactForm: {
