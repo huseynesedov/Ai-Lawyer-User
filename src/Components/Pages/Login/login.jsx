@@ -4,6 +4,7 @@ import { useAuth } from '../../../AuthContext';
 import Cookies from 'js-cookie';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { notification } from 'antd'; 
+import images from '../../../Assets/Images/js/images'; // Google giriş görseli
 
 function Login() {
   const { login } = useAuth();
@@ -12,23 +13,25 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const { userName: initialUserName } = location.state || {};
-
   const [userName, setUserName] = useState(initialUserName || '');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-      return null;
-    };
+  // URL'deki returnUrl parametresini almak için
+  const [returnUrl, setReturnUrl] = useState('/');
 
-    const emailFromCookie = getCookie('email');
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const returnUrlParam = params.get('returnUrl');
+    if (returnUrlParam) {
+      setReturnUrl(returnUrlParam);
+    }
+
+    // Cookie'den email almak için
+    const emailFromCookie = Cookies.get('email');
     if (emailFromCookie && !initialUserName) {
       setUserName(emailFromCookie);
     }
-  }, [initialUserName]);
+  }, [initialUserName, location.search]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -47,8 +50,8 @@ function Login() {
   
     login(userName, password)
       .then(() => {
-        navigate('/');
         Cookies.remove('email');
+        navigate(returnUrl || '/'); // Giriş başarılı olursa returnUrl parametresine yönlendir
       })
       .catch((error) => {
         console.error("Giriş xətası: ", error);
@@ -59,7 +62,21 @@ function Login() {
         });
       });
   };
-  
+
+  const handleGoogleLogin = () => {
+    try {
+      localStorage.removeItem('token');
+      // returnUrl'i sakla ve Google login URL'ine yönlendir
+      const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
+      window.location.href = `https://url.ailawyer.az/api/Auth/google-login`;
+    } catch (error) {
+      console.error("Google giriş uğursuz: ", error);
+      notification.error({
+        message: 'Xəta',
+        description: 'Google giriş zamanı xəta baş verdi!',
+      });
+    }
+  };
 
   return (
     <div className='login mt-5'>
@@ -87,8 +104,8 @@ function Login() {
                 autoComplete="current-password"
               />
               <span className='eye' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer', marginLeft: '8px' }}>
-                  {showPassword ? <FaEye /> : <FaEyeSlash />}
-                </span>
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
             </label>
             <div className="w-100 d-flex justify-content-end">
               <Link to={"/ForgotPassword"}>
@@ -99,6 +116,22 @@ function Login() {
               Daxil ol
             </button>
           </form>
+
+          <div className='border-bottom-liner mt-4 d-flex align-items-center justify-content-center'>
+            <p className='fs-12'>Və ya</p>
+          </div>
+
+          <button className='sign-in-google mt-4 d-flex align-items-center' onClick={handleGoogleLogin}>
+            <img src={images.google} alt="Google Giriş" />
+            <p className='ms-1'>Google ilə daxil ol</p>
+          </button>
+
+          <span className='fs-12 d-flex justify-content-center loginn mt-3'>
+            <p>Hesabınız yoxdur?</p>
+            <Link to={"/Register"}>
+              <span className='fw-700 ms-2'>Qeydiyyat</span>
+            </Link>
+          </span>
         </div>
       </div>
     </div>

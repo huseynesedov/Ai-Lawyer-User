@@ -1,22 +1,25 @@
 import React from 'react';
 import images from '../../../Assets/Images/js/images';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
 
 function Home() {
     const navigate = useNavigate();
 
     const handleChatStart = () => {
+        // Token kontrolü yap
         const token = localStorage.getItem('token');
         const googleToken = localStorage.getItem('google-token');
         
+        // Eğer token yoksa, kullanıcıyı Register (kayıt) sayfasına yönlendir ve bildirim göster
         if (!token && !googleToken) {
-            navigate('/Register');
+            navigate('/login?returnUrl=/Chat');
             notification.info({
                 description: 'Çata başlamaq üçün əvvəlcə giriş etməlisiniz.',
                 placement: 'topRight',
             });
         } else {
+            // Eğer token varsa, kullanıcıyı Chat sayfasına yönlendir
             navigate('/Chat');
         }
     };

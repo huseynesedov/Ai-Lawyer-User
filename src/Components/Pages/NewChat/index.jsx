@@ -20,7 +20,7 @@ function NewChat() {
 
     const fetchChats = async () => {
         try {
-            const token = localStorage.getItem('token');
+            let token = localStorage.getItem('token') || localStorage.getItem('google-token');
             if (token) {
                 const decodedToken = jwtDecode(token);
                 const userId = decodedToken.id;

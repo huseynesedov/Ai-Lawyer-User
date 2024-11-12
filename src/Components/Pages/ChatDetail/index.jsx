@@ -19,11 +19,13 @@ function Chat() {
 
     const fetchChats = async () => {
         try {
-            const token = localStorage.getItem('token');
+           // 'token' ya da 'google-token' varsa birini seç
+let token = localStorage.getItem('token') || localStorage.getItem('google-token');
+
             if (token) {
                 const decodedToken = jwtDecode(token);
                 const userId = decodedToken.id;
-                setUsername(decodedToken.UserName || ""); 
+                setUsername(decodedToken.FullName || ""); 
 
                 const response = await ChatApi.getChats(userId);
                 setChatHistory(Array.isArray(response) ? response : []);
@@ -44,49 +46,55 @@ function Chat() {
                 const newMessage = { sender: 'user', text: message, loading: false };
                 setMessages(prevMessages => [...prevMessages, newMessage]);
                 setMessage("");
-
+    
                 const loadingMessage = { sender: 'bot', text: '', loading: true };
                 setMessages(prevMessages => [...prevMessages, loadingMessage]);
-
-                setTimeout(async () => {
-                    if (selectedChatId !== null) {
-                        const params = { message, chatId: selectedChatId };
-                        const response = await ChatApi.sendMessage(params);
-
-                        const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
-                        setMessages(prevMessages => {
-                            const updatedMessages = [...prevMessages];
-                            updatedMessages[updatedMessages.length - 1] = botResponse;
-                            return updatedMessages;
-                        });
-
-                        if (response.botResponse.includes("some condition")) {
-                            setShowContactButton(true);
-                        }
+    
+                if (selectedChatId !== null) {
+                    const params = { message, chatId: selectedChatId };
+                    const response = await ChatApi.sendMessage(params);
+    
+                    const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
+                    setMessages(prevMessages => {
+                        const updatedMessages = [...prevMessages];
+                        updatedMessages[updatedMessages.length - 1] = botResponse;
+                        return updatedMessages;
+                    });
+    
+                    if (response.botResponse.includes("some condition")) {
+                        setShowContactButton(true);
                     }
-                    setIsInputDisabled(false);
-                }, 1000);
+                }
+                setIsInputDisabled(false);
             } catch (error) {
                 console.error("Message sending error:", error.response?.data || error.message);
                 setIsInputDisabled(false);
             }
         }
     };
+    
 
     const handleChatClick = async (chatId) => {
         setSelectedChatId(chatId);
         try {
+            // API'den tüm mesajları getir
             const response = await ChatApi.getMessages(chatId);
-            const formattedMessages = response.map((msg) => ({
-                sender: msg.sender === 'user' ? 'user' : 'bot',
-                text: msg.sender === 'user' ? msg.contentUser : msg.contentBot,
-                loading: false,
-            }));
+    
+            // Her bir mesajı uygun şekilde formatla
+            const formattedMessages = response.flatMap((msg) => {
+                const userMessage = { sender: 'user', text: msg.contentUser, loading: false };
+                const botMessage = { sender: 'bot', text: msg.contentBot, loading: false };
+                return [userMessage, botMessage];
+            });
+    
+            // Mesajları state'e ata
             setMessages(formattedMessages);
         } catch (error) {
             console.error("Error fetching chat messages:", error);
         }
     };
+    
+    
 
     const toggleScroll = () => {
         setIsScrollOpen(prevState => !prevState);

@@ -18,7 +18,7 @@ import Otp from "../../Pages/Login/otp";
 import ResetPassword from "../../Pages/Login/resetPassword";
 import ChatDetail from "../../Pages/ChatDetail/index";
 import NewChat from "../../Pages/NewChat";
-
+import PrivateRoute from "./PrivateRoute"; // PrivateRoute bileşenini içe aktar
 
 const RouteList = () => {
   const { loginLoading } = useAuth();
@@ -107,24 +107,43 @@ const RouteList = () => {
             </Spin>
           }
         />
-       
-        <Route
-          path="/Chat"
-          element={
-              <Chat />
-          }
-        />
-         <Route
-          path="/ChatDetail/:chatId"
-          element={ <ChatDetail /> }
-        />
-        <Route
-          path="/NewChat"
-          element={ <NewChat /> }
-        />
+
+        {/* PrivateRoute ile korunan özel sayfalar */}
+        <Route element={<PrivateRoute />}>
+          <Route
+            path="/Chat"
+            element={
+              <>
+                <Header />
+                <Chat />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/ChatDetail/:chatId"
+            element={
+              <>
+                <Header />
+                <ChatDetail />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/NewChat"
+            element={
+              <>
+                <Header />
+                <NewChat />
+                <Footer />
+              </>
+            }
+          />
+        </Route>
       </Routes>
     </>
   );
-}
+};
 
 export default RouteList;
