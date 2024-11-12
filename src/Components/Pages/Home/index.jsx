@@ -1,11 +1,26 @@
 import React from 'react';
 import images from '../../../Assets/Images/js/images';
-import { Link } from 'react-router-dom';
-
-
-
+import {useNavigate } from 'react-router-dom';
+import { notification } from 'antd';
 
 function Home() {
+    const navigate = useNavigate();
+
+    const handleChatStart = () => {
+        const token = localStorage.getItem('token');
+        const googleToken = localStorage.getItem('google-token');
+        
+        if (!token && !googleToken) {
+            navigate('/Register');
+            notification.info({
+                description: 'Çata başlamaq üçün əvvəlcə giriş etməlisiniz.',
+                placement: 'topRight',
+            });
+        } else {
+            navigate('/Chat');
+        }
+    };
+
     return (
         <div className='Home'>
             <div className="container">
@@ -18,12 +33,10 @@ function Home() {
                                     <p className='mt-4'>Bahalı hüquq məsləhətləri, görüşlər üçün uzun müddət gözləmələr və çaşqın hüquqi mətnlərlə vidalaşın.</p>
                                 </div>
                                 <div className='ai-start'>
-                                    <Link to={"/Chat"}>
-                                        <button>
-                                            Çata başla
-                                            <img className='ms-1' src={images.arrowright} alt="" />
-                                        </button>
-                                    </Link>
+                                    <button onClick={handleChatStart}>
+                                        Çata başla
+                                        <img className='ms-1' src={images.arrowright} alt="" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -50,8 +63,8 @@ function Home() {
                         <div className='col-xl-4'>
                             <div className="home-info-box me-4">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard1} />
-                                    <div className="home-info-box-content d-flex flex-column ">
+                                    <img src={images.homecard1} alt="" />
+                                    <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fw-600'>İnternetlə işləyir</p>
                                         <p>Sürətli veb araşdırması, saatlarla təhlili saniyələr ərzində tamamlayır.</p>
                                     </div>
@@ -63,7 +76,7 @@ function Home() {
                         <div className='col-xl-4'>
                             <div className="home-info-box">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard2} />
+                                    <img src={images.homecard2} alt="" />
                                     <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fw-600'>Çox platformalı</p>
                                         <p>Platformamıza sadə bir toxunuşla daxil olun – internetdə, iOS və ya Android-də.</p>
@@ -76,7 +89,7 @@ function Home() {
                         <div className='col-xl-4'>
                             <div className="home-info-box">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard3} />
+                                    <img src={images.homecard3} alt="" />
                                     <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fw-600'>Sizin üçün fərdiləşdirilmişdir</p>
                                         <p>Unikal seçimlərinizə uyğunlaşdırmaq üçün onu fərdiləşdirin və öyrədin.</p>

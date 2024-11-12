@@ -145,6 +145,12 @@ button {
     /* Sabit yükseklik */
 }
 
+.overflow {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 625px;
+}
+
 .ChatMain{
     display: flex;
     flex-direction: column;
@@ -169,11 +175,7 @@ button {
 
 }
 
-.scrool {
-    height: 324px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+
 
 .Up {
     transform: rotate(90px) !important;
@@ -200,9 +202,9 @@ button {
 /* Firefox için */
 .scrool {
     scrollbar-width: thin;
-    /* Scrollbar genişliği */
     scrollbar-color: #0f5fc2 #f1f1f1;
-    /* Thumb ve track renkleri */
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
 }
 
 
@@ -251,14 +253,11 @@ button {
 
 
 
-.scrool {
-    transition: max-height 0.3s ease-out;
-    overflow: hidden;
-    max-height: 0; /* Closed state */
-}
+
 
 .scrool.open {
-    max-height: 280px; /* Adjust this value as needed */
+    margin-top: 10px;
+    max-height: 324px; /* Adjust this value as needed */
     overflow-y: auto;
 }
 

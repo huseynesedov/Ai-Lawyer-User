@@ -5,7 +5,7 @@ import images from '../../../Assets/Images/js/images';
 import { ChatApi } from '../../../api/chat.api';
 import { jwtDecode } from 'jwt-decode';
 
-function Chat() {
+function NewChat() {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [chatHistory, setChatHistory] = useState([]);
@@ -16,7 +16,7 @@ function Chat() {
     const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
-    const [chatId, setChatId] = useState(0);
+    const [chatId, setChatId] = useState(1);
 
     const fetchChats = async () => {
         try {
@@ -42,6 +42,8 @@ function Chat() {
     useEffect(() => {
         fetchChats();
     }, []);
+
+
 
     const handleSendMessage = async () => {
         if (message.trim()) {
@@ -69,7 +71,7 @@ function Chat() {
                     });
 
                     if (response.botResponse.includes("PDF məzmunu oxumaq qabiliyyətinə malik deyiləm") ||
-                        response.botResponse.includes("Sualınız çox mürəkkəbdir və ya mənim sahəmdən kənardır zəhmət olmasa hüquqi məsləhətçiyə müraciət edin") ||
+                        response.botResponse.includes("Sualnız çox mürəkkəbdir va ya mənim sahəmdən kanardır zəhmət olmasa hüquqi məsləhətçisinə müraciət edin") ||
                         response.botResponse.includes("Hata mesajı 2") ||
                         response.botResponse.includes("Hata mesajı 3") ||
                         response.botResponse.includes("Hata mesajı 4")) {
@@ -105,21 +107,33 @@ function Chat() {
                                 <span className='fw-400 fs-24 text-black'>E-legal</span>
                             </div>
                             <div className="d-flex bg-turkuaz flex-column justify-content-betwee">
-                                <Link to={"/NewChat"}>
-                                    <button className='Chat-button mt-3 d-flex align-items-center justify-content-between'>
-                                        Yeni Chat
-                                        <img src={images.plus} alt="" />
-                                    </button>
-                                </Link>
+                                <Link to={"/NewChat"}></Link>
+                                <button
+                                    className='Chat-button mt-3 d-flex align-items-center justify-content-between'
+                                >
+                                    Yeni Chat
+                                    <img
+                                        src={images.plus}
+                                        alt=""
+                                    />
+                                </button>
                                 <div className='mt-4'>
                                     <button className='Chat-button mt-3 d-flex align-items-center justify-content-between' onClick={toggleScroll}>
                                         Keçmiş
-                                        <img src={images.arrowdown} alt="" className={isArrowRotated ? 'rotated' : ''} />
+                                        <img
+                                            src={images.arrowdown}
+                                            alt=""
+                                            className={isArrowRotated ? 'rotated' : ''}
+                                        />
                                     </button>
                                     <div className={`scrool ${isScrollOpen ? 'open' : 'closed'}`}>
                                         {chatHistory.length > 0 ? (
                                             chatHistory.map((chat) => (
-                                                <button className="arxiv justify-content-between" key={chat.id} onClick={() => handleChatClick(chat.id)}>
+                                                <button
+                                                    className="arxiv justify-content-between"
+                                                    key={chat.id}
+                                                    onClick={() => handleChatClick(chat.id)}
+                                                >
                                                     <h5 className='fs-15'>{chat.title}</h5>
                                                     <img src={images.arrowdown} alt="" />
                                                 </button>
@@ -132,7 +146,7 @@ function Chat() {
                             </div>
                         </div>
                         <div className="userHello d-flex align-items-center">
-                            <span>Xoş Gəlmisiniz, <span className='fs-20'>{username}</span></span>
+                            <span>Xoş Gəlmisiniz , <span className='fs-20'>{username}</span></span>
                         </div>
                     </div>
                 </div>
@@ -197,4 +211,4 @@ function Chat() {
     );
 }
 
-export default Chat;
+export default NewChat;

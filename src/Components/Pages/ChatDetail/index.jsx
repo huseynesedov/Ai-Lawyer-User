@@ -1,4 +1,3 @@
-// Chat.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import images from '../../../Assets/Images/js/images';
@@ -16,7 +15,7 @@ function Chat() {
     const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
-    const [chatId, setChatId] = useState(0);
+    const [selectedChatId, setSelectedChatId] = useState(null);
 
     const fetchChats = async () => {
         try {
@@ -27,12 +26,7 @@ function Chat() {
                 setUsername(decodedToken.UserName || ""); 
 
                 const response = await ChatApi.getChats(userId);
-
-                if (Array.isArray(response)) {
-                    setChatHistory(response);
-                } else {
-                    setChatHistory([]);
-                }
+                setChatHistory(Array.isArray(response) ? response : []);
             }
         } catch (error) {
             console.error("Error fetching chats:", error);
@@ -47,37 +41,31 @@ function Chat() {
         if (message.trim()) {
             try {
                 setIsInputDisabled(true);
-
                 const newMessage = { sender: 'user', text: message, loading: false };
                 setMessages(prevMessages => [...prevMessages, newMessage]);
-
                 setMessage("");
 
                 const loadingMessage = { sender: 'bot', text: '', loading: true };
                 setMessages(prevMessages => [...prevMessages, loadingMessage]);
 
                 setTimeout(async () => {
-                    const params = { message, chatId };
+                    if (selectedChatId !== null) {
+                        const params = { message, chatId: selectedChatId };
+                        const response = await ChatApi.sendMessage(params);
 
-                    const response = await ChatApi.sendMessage(params);
+                        const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
+                        setMessages(prevMessages => {
+                            const updatedMessages = [...prevMessages];
+                            updatedMessages[updatedMessages.length - 1] = botResponse;
+                            return updatedMessages;
+                        });
 
-                    const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
-                    setMessages(prevMessages => {
-                        const updatedMessages = [...prevMessages];
-                        updatedMessages[updatedMessages.length - 1] = botResponse;
-                        return updatedMessages;
-                    });
-
-                    if (response.botResponse.includes("PDF məzmunu oxumaq qabiliyyətinə malik deyiləm") ||
-                        response.botResponse.includes("Sualınız çox mürəkkəbdir və ya mənim sahəmdən kənardır zəhmət olmasa hüquqi məsləhətçiyə müraciət edin") ||
-                        response.botResponse.includes("Hata mesajı 2") ||
-                        response.botResponse.includes("Hata mesajı 3") ||
-                        response.botResponse.includes("Hata mesajı 4")) {
-                        setShowContactButton(true);
+                        if (response.botResponse.includes("some condition")) {
+                            setShowContactButton(true);
+                        }
                     }
-
                     setIsInputDisabled(false);
-                }, 1);
+                }, 1000);
             } catch (error) {
                 console.error("Message sending error:", error.response?.data || error.message);
                 setIsInputDisabled(false);
@@ -85,14 +73,24 @@ function Chat() {
         }
     };
 
+    const handleChatClick = async (chatId) => {
+        setSelectedChatId(chatId);
+        try {
+            const response = await ChatApi.getMessages(chatId);
+            const formattedMessages = response.map((msg) => ({
+                sender: msg.sender === 'user' ? 'user' : 'bot',
+                text: msg.sender === 'user' ? msg.contentUser : msg.contentBot,
+                loading: false,
+            }));
+            setMessages(formattedMessages);
+        } catch (error) {
+            console.error("Error fetching chat messages:", error);
+        }
+    };
+
     const toggleScroll = () => {
         setIsScrollOpen(prevState => !prevState);
         setIsArrowRotated(prevState => !prevState);
-    };
-
-    const handleChatClick = (chatId) => {
-        console.log(chatId);
-        navigate(`/ChatDetail/${chatId}`);
     };
 
     return (
@@ -104,7 +102,7 @@ function Chat() {
                             <div className='d-flex justify-content-between homburger'>
                                 <span className='fw-400 fs-24 text-black'>E-legal</span>
                             </div>
-                            <div className="d-flex bg-turkuaz flex-column justify-content-betwee">
+                            <div className="d-flex bg-turkuaz flex-column justify-content-between">
                                 <Link to={"/NewChat"}>
                                     <button className='Chat-button mt-3 d-flex align-items-center justify-content-between'>
                                         Yeni Chat
@@ -116,10 +114,14 @@ function Chat() {
                                         Keçmiş
                                         <img src={images.arrowdown} alt="" className={isArrowRotated ? 'rotated' : ''} />
                                     </button>
-                                    <div className={`scrool ${isScrollOpen ? 'open' : 'closed'}`}>
+                                    <div className={`scrool mt-4 ${isScrollOpen ? 'open' : 'closed'}`}>
                                         {chatHistory.length > 0 ? (
                                             chatHistory.map((chat) => (
-                                                <button className="arxiv justify-content-between" key={chat.id} onClick={() => handleChatClick(chat.id)}>
+                                                <button
+                                                    className="arxiv justify-content-between"
+                                                    key={chat.id}
+                                                    onClick={() => handleChatClick(chat.id)}
+                                                >
                                                     <h5 className='fs-15'>{chat.title}</h5>
                                                     <img src={images.arrowdown} alt="" />
                                                 </button>
@@ -132,7 +134,7 @@ function Chat() {
                             </div>
                         </div>
                         <div className="userHello d-flex align-items-center">
-                            <span>Xoş Gəlmisiniz, <span className='fs-20'>{username}</span></span>
+                            <span>Xoş Gəlmisiniz , <span className='fs-20'>{username}</span></span>
                         </div>
                     </div>
                 </div>
@@ -140,17 +142,12 @@ function Chat() {
                     <div className="ChatRight w-100 d-flex flex-column mt-4 justify-content-end">
                         <div className="overflow">
                             {messages.map((msg, index) => (
-                                <div key={index} className={`d-flex ${msg.sender === 'user' ? 'justify-content-end' : ''}`}>
+                                <div key={index} className={`d-flex ${msg.sender === 'user' ? 'justify-content-end' : 'justify-content-start'}`}>
                                     <div className={`box${msg.sender === 'user' ? 'Right' : 'Left'} mb-4 me-2`}>
-                                        {msg.sender === 'user' && (
-                                            <div className="d-flex w-100 position-relative">
-                                                <span className='fs-25 fw-400'>{msg.text}</span>
-                                                <div className="blue-part"></div>
-                                            </div>
-                                        )}
-                                        {msg.sender === 'bot' && (
+                                        {msg.sender === 'user' ? (
+                                            <span className='fs-25 fw-400'>{msg.text}</span>
+                                        ) : (
                                             <>
-                                                <div className="blue-part2"></div>
                                                 <span className='fs-20 fw-400'>
                                                     <img src={images.bot} alt="" />
                                                     {msg.text}

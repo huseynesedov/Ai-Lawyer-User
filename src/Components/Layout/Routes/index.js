@@ -16,6 +16,8 @@ import Chat from "../../Pages/Chat";
 import Kontakt from "../../Pages/Kontakt";
 import Otp from "../../Pages/Login/otp";
 import ResetPassword from "../../Pages/Login/resetPassword";
+import ChatDetail from "../../Pages/ChatDetail/index";
+import NewChat from "../../Pages/NewChat";
 
 
 const RouteList = () => {
@@ -64,6 +66,7 @@ const RouteList = () => {
             </>
           }
         />
+        
         <Route
           path="/Login"
           element={
@@ -108,10 +111,16 @@ const RouteList = () => {
         <Route
           path="/Chat"
           element={
-            <Spin spinning={loginLoading} tip="Loading...">
               <Chat />
-            </Spin>
           }
+        />
+         <Route
+          path="/ChatDetail/:chatId"
+          element={ <ChatDetail /> }
+        />
+        <Route
+          path="/NewChat"
+          element={ <NewChat /> }
         />
       </Routes>
     </>

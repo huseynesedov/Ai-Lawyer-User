@@ -33,23 +33,17 @@ function Otp() {
     };
 
     const handlePaste = (e) => {
-        // Prevent the default paste behavior
         e.preventDefault();
 
-        // Get the pasted content
         const pastedValue = e.clipboardData.getData('Text').trim();
 
-        // Ensure it's a 6-digit OTP
         if (pastedValue.length === 6 && /^\d{6}$/.test(pastedValue)) {
-            // Fill each input field with the corresponding digit
-            setOtpCode(pastedValue);  // Update the otpCode state with the full pasted OTP code
+            setOtpCode(pastedValue);
 
-            // Loop through each input and set its value to the corresponding digit
             for (let i = 0; i < 6; i++) {
                 inputRefs.current[i].value = pastedValue[i];
             }
         } else {
-            // Optionally handle invalid OTP here (e.g., show a warning or reset fields)
             notification.error({
                 message: 'Xəta !',
                 description: 'Daxil etdiyiniz OTP etibarsızdır.',

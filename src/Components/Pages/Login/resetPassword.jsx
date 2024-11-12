@@ -41,7 +41,6 @@ function ResetPassword() {
             return;
         }
 
-        // Validate password strength
         if (!validatePassword(password)) {
             notification.error({
                 message: 'Xəta !',
