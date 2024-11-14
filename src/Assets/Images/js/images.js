@@ -14,6 +14,8 @@ import bloqcard6 from '../bloqcard6.svg'
 import clockicon from '../clockicon.svg'
 import bloqcardicon from '../bloqcardicon.svg'
 import kontaktimg from '../kontaktimg.svg'
+import bloqdetails from '../bloqdetails.svg'
+import clockwhite from '../clockwhite.svg'
 
 
 export default {
@@ -32,5 +34,7 @@ export default {
     bloqcard6,
     clockicon,
     bloqcardicon,
-    kontaktimg
+    kontaktimg,
+    bloqdetails,
+    clockwhite
 }

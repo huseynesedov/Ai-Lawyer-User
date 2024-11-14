@@ -11,6 +11,7 @@ import "./Assets/Styles/bloq.scss"
 import "./Assets/Styles/navbar.scss"
 import "./Assets/Styles/login.scss"
 import "./Assets/Styles/footer.scss"
+import "./Assets/Styles/bloqdetails.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

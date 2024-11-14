@@ -1,5 +1,6 @@
 import React from 'react'
 import images from '../../../Assets/Images/js/images'
+import { Link } from 'react-router-dom'
 
 function Bloq() {
   return (
@@ -22,10 +23,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>
@@ -40,10 +41,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>
@@ -58,10 +59,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>
@@ -76,10 +77,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>
@@ -94,10 +95,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>
@@ -112,10 +113,10 @@ function Bloq() {
                          <img src={images.clockicon}/>
                          <span>3 dəq</span>   
                          </div>
-                         <div className="bloq-box-info-details">
+                         <Link to={"/Bloq-details"} className="bloq-box-info-details text-black">
                             <span>Daha ətraflı</span>
                             <img src={images.bloqcardicon} alt="" />
-                         </div>
+                         </Link>
                         </div>
                     </div>
                 </div>

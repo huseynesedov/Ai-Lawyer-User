@@ -13,6 +13,7 @@ import Forgot from "../../Pages/Login/forgot";
 import Mail from "../../Pages/Login/mailcontrol";
 import Bloq from "../../Pages/Bloq";
 import Kontakt from "../../Pages/Kontakt";
+import BloqDetails from "../../Pages/Bloqdetails";
 
 
 const RouteList = () => {
@@ -47,6 +48,16 @@ const RouteList = () => {
             <>
               <Header />
               <Bloq />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Bloq-details"
+          element={
+            <>
+              <Header />
+              <BloqDetails />
               <Footer />
             </>
           }
