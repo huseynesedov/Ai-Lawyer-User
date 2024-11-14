@@ -117,7 +117,7 @@ function NewChat() {
                                         alt=""
                                     />
                                 </button>
-                                <div className='mt-4'>
+                                {/* <div className='mt-4'>
                                     <button className='Chat-button mt-3 d-flex align-items-center justify-content-between' onClick={toggleScroll}>
                                         Keçmiş
                                         <img
@@ -142,7 +142,7 @@ function NewChat() {
                                             <p>No chat history available.</p>
                                         )}
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="userHello d-flex align-items-center">

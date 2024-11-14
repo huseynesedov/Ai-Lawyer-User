@@ -16,63 +16,72 @@ function Faq() {
             <div className="details-box">
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  “AI lawyer” nədir?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>“AI lawyer” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Necə qeydiyyatdan keçə bilərəm?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Saytda qeydiyyatdan keçmək üçün “Qeydiyyat” düyməsini klikləyin və tələb olunan məlumatları daxil edin. E-poçtunuza gələn təsdiq linkini aktivləşdirərək hesabınızı təsdiqləyin.</p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Necə sual verə bilərəm və gündə neçə sual verə bilərəm?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Qeydiyyatdan keçdikdən sonra “Çata başla” bölməsindən sualınızı verə bilərsiniz. Hər gün 10 sual vermək mümkündür və sual limiti 24 saatdan sonra yenilənir.</p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Bir sual üçün neçə cavab ala bilərəm?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Hər sual üçün bir cavab verilir. Əgər əlavə məlumat lazımdırsa, yeni sual verə bilərsiniz.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Vəkillə məsləhətləşmə necə olur?
+
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Vəkillə məsləhətləşmək üçün “Məsləhət alın” bölməsindən formu doldurun və uyğun vaxt seçərək randevu alın. Vəkil sizinlə əlaqə saxlayacaq.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Platformanın istifadəsi ödənişlidirmi?
+
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Gün ərzində 10 sual vermək ödənişsizdir. Lakin fərdi vəkillə məsləhət xidmətləri ödənişli ola bilər.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Şəxsi məlumatlarım necə qorunur?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Platformamızda şəxsi məlumatlarınız tam məxfi saxlanılır və üçüncü tərəflərə ötürülmür. Məlumatlar şifrələnmiş şəkildə qorunur.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  AI cavabları hüquqi məsləhət kimi istifadə edilə bilərmi?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Süni intellektin cavabları ümumi məlumat xarakteri daşıyır və rəsmi hüquqi məsləhət yerinə keçmir. Konkret məsələlər üçün vəkillə məsləhət almaq tövsiyə olunur.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Sayt hansı dillərdə mövcuddur?
+
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Hazırda platformamız Azərbaycan dilində fəaliyyət göstərir, lakin gələcəkdə digər dillərin də əlavə edilməsi planlaşdırılır.
+                </p>
               </details>
               <details>
                 <summary>
-                  “Virtual Hüquqşünas” nədir?
+                  Şifrəmi unutmuşam, nə etməliyəm?
                 </summary>
-                <p>“Virtual Hüquqşünas” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
+                <p>Giriş səhifəsində “Şifrəni unutdum” düyməsini klikləyin və e-poçtunuza göndərilən link vasitəsilə yeni şifrə təyin edin.</p>
               </details>
             </div>
           </div>

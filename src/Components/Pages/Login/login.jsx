@@ -47,7 +47,6 @@ function Login() {
   
     login(userName, password)
       .then(() => {
-        navigate('/');
         Cookies.remove('email');
       })
       .catch((error) => {

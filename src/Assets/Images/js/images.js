@@ -26,6 +26,10 @@ import bloqcardicon from '../bloqcardicon.svg'
 import kontaktimg from '../kontaktimg.svg'
 
 
+import Login from '../Vector.svg'
+import user from '../1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg'
+
+
 export default {
     Logo,
     google,
@@ -51,5 +55,7 @@ export default {
     bloqcard6,
     clockicon,
     bloqcardicon,
-    kontaktimg
+    kontaktimg,
+    user,
+    Login
 }

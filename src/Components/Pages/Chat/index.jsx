@@ -97,9 +97,9 @@ function Chat() {
 
     return (
         <div className="container">
-            <div className="row d-flex mx-3 my-3">
-                <div className="col-3" style={{ height: "671px" }}>
-                    <div className="leftbar h-100 d-flex flex-column justify-content-between bg-turkuaz">
+            <div className="row h-100vhh d-flex mx-3 my-3">
+                <div className="col-3 h-671">
+                    <div className="leftbar d-flex flex-column justify-content-between bg-turkuaz">
                         <div>
                             <div className='d-flex justify-content-between homburger'>
                                 <span className='fw-400 fs-24 text-black'>E-legal</span>
@@ -111,7 +111,7 @@ function Chat() {
                                         <img src={images.plus} alt="" />
                                     </button>
                                 </Link>
-                                <div className='mt-4'>
+                                {/* <div className='mt-4'>
                                     <button className='Chat-button mt-3 d-flex align-items-center justify-content-between' onClick={toggleScroll}>
                                         Keçmiş
                                         <img src={images.arrowdown} alt="" className={isArrowRotated ? 'rotated' : ''} />
@@ -128,7 +128,7 @@ function Chat() {
                                             <p>No chat history available.</p>
                                         )}
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="userHello d-flex align-items-center">
@@ -141,7 +141,7 @@ function Chat() {
                         <div className="overflow">
                             {messages.map((msg, index) => (
                                 <div key={index} className={`d-flex ${msg.sender === 'user' ? 'justify-content-end' : ''}`}>
-                                    <div className={`box${msg.sender === 'user' ? 'Right' : 'Left'} mb-4 me-2`}>
+                                    <div className={`box${msg.sender === 'user' ? 'Right' : 'Left'} position-relative mb-4 me-2`}>
                                         {msg.sender === 'user' && (
                                             <div className="d-flex w-100 position-relative">
                                                 <span className='fs-25 fw-400'>{msg.text}</span>
@@ -169,7 +169,7 @@ function Chat() {
                             ))}
                         </div>
 
-                        <div className="input d-flex justify-content-between">
+                        <div className="input d-flex align-items-center justify-content-between">
                             <input
                                 type="text"
                                 className='input-chat'

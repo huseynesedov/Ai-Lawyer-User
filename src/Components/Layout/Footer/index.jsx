@@ -45,7 +45,7 @@ function Footer() {
             </div>
             <div className="Footer-bottom">
                 <div className="container">
-                    <div className="row bg-white">
+                    <div className="row w-100 bg-white">
                         <div className="col d-flex align-items-center justify-content-center">
                             <div className='fw-300 fs-13 fc-32'>
                                 Copyright © 2021 e-Legal. All rights reserved.

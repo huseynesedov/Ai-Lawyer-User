@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext';
-import images from '../../../Assets/Images/js/images'; // Your images import
+import images from '../../../Assets/Images/js/images';
 import { notification } from 'antd';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Register() {
   const { register } = useAuth();
@@ -54,12 +54,7 @@ function Register() {
     }
 
     register(fullName, lastName, email, userName, password, rePassword)
-      .then(() => {
-        navigate('/Login');
-      })
-      .catch((error) => {
-        console.error("Kayıt başarısız: ", error);
-      });
+    
   };
 
   useEffect(() => {
