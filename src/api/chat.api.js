@@ -7,7 +7,6 @@ export const ChatApi = {
         return BaseApi.post(apiRoutes.Chat.sendMessage, params);
     },
     getChats(chatId) {
-        console.log(chatId);
         return BaseApi.get(`${apiRoutes.Chat.getChats}${chatId}`);
     },
     createChat(data) {

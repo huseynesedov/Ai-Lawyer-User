@@ -16,7 +16,6 @@ import Chat from "../../Pages/Chat";
 import Kontakt from "../../Pages/Kontakt";
 import Otp from "../../Pages/Login/otp";
 import ResetPassword from "../../Pages/Login/resetPassword";
-import ChatDetail from "../../Pages/ChatDetail/index";
 import NewChat from "../../Pages/NewChat";
 import BloqDetails from "../../Pages/Bloqdetails";
 import PrivateRoute from "./PrivateRoute";
@@ -124,29 +123,16 @@ const RouteList = () => {
             path="/Chat"
             element={
               <>
-                <Header />
                 <Chat />
-                <Footer />
               </>
             }
           />
-          <Route
-            path="/ChatDetail/:chatId"
-            element={
-              <>
-                <Header />
-                <ChatDetail />
-                <Footer />
-              </>
-            }
-          />
+          
           <Route
             path="/NewChat"
             element={
               <>
-                <Header />
                 <NewChat />
-                <Footer />
               </>
             }
           />

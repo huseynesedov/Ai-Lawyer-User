@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../../Assets/Images/js/images';
 
-import { FaInstagram } from "react-icons/fa";
+import { FaArrowRight, FaInstagram } from "react-icons/fa";
 function Footer() {
 
 
@@ -23,7 +23,26 @@ function Footer() {
                         <Link to={"/Faq"}>
                             <h5>FAQ</h5>
                         </Link>
-
+                        <div className="faq d-flex flex-column mt-4">
+                            <div>
+                                <a href="/Faq">
+                                    “AI lawyer” nədir?
+                                    <FaArrowRight className='ms-2' />
+                                </a>
+                            </div>
+                            <div className='mt-2'>
+                                <a href="/Faq">
+                                    Vəkillə məsləhətləşmə necə olur?
+                                    <FaArrowRight className='ms-2' />
+                                </a>
+                            </div>
+                            <div className='my-2'>
+                                <a href="/Faq">
+                                AI cavabları hüquqi məsləhət kimi istifadə edilə bilərmi?
+                                    <FaArrowRight className='ms-2' />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-xl-2">
                         <Link to={"/Kontakt"}>
@@ -34,7 +53,7 @@ function Footer() {
                                 admin@AILAWYER.AZ
                             </a>
                         </div>
-                        <div className='mt-2 mail'>
+                        <div className='my-2 mail'>
                             <a href="mailto:info@AILAWYER.AZ">
                                 info@AILAWYER.AZ
                             </a>

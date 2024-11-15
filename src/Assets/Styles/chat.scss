@@ -78,7 +78,7 @@ button {
 
 .boxRight span,
 .boxLeft span {
-    padding: 12px 21px;
+    padding: 12px 12px;
     color: #292929;
     font-family: Montserrat;
 }
@@ -284,4 +284,19 @@ button {
         overflow-x: hidden;
         max-height: 374px;
     }
+}
+
+.detailed-info {
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+}
+
+.detailed-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.detailed-info a:hover {
+    text-decoration: underline;
 }
