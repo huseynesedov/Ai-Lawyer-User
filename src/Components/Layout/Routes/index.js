@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 import Home from "../../Pages/Home";
 import Faq from "../../Pages/Faq";
@@ -17,6 +17,7 @@ import BloqDetails from "../../Pages/Bloqdetails";
 
 
 const RouteList = () => {
+  const [selectedBloq,setSelectedBloq] = useState(null)
   const { loginLoading } = useAuth();
 
   return (
@@ -47,7 +48,7 @@ const RouteList = () => {
           element={
             <>
               <Header />
-              <Bloq />
+              <Bloq setSelectedBloq={setSelectedBloq}/>
               <Footer />
             </>
           }
@@ -57,7 +58,7 @@ const RouteList = () => {
           element={
             <>
               <Header />
-              <BloqDetails />
+              <BloqDetails selectedBloq={selectedBloq} />
               <Footer />
             </>
           }
