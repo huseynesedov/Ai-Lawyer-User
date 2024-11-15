@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { Spin } from "antd";
 import { useAuth } from "../../../AuthContext";
 
 import Header from "../../Layout/Header/index";
 import Footer from "../../Layout/Footer/index";
-
 import Home from "../../Pages/Home";
 import Faq from "../../Pages/Faq";
 import Login from "../../Pages/Login/login";
@@ -21,6 +20,7 @@ import BloqDetails from "../../Pages/Bloqdetails";
 import PrivateRoute from "./PrivateRoute";
 
 const RouteList = () => {
+  const [selectedBloq,setSelectedBloq] = useState(null)
   const { loginLoading } = useAuth();
 
   return (
@@ -51,7 +51,7 @@ const RouteList = () => {
           element={
             <>
               <Header />
-              <Bloq />
+              <Bloq setSelectedBloq={setSelectedBloq}/>
               <Footer />
             </>
           }
@@ -61,7 +61,7 @@ const RouteList = () => {
           element={
             <>
               <Header />
-              <BloqDetails />
+              <BloqDetails selectedBloq={selectedBloq} />
               <Footer />
             </>
           }

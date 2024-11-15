@@ -1,62 +1,66 @@
-.BloqDetails{
-    background: #f4f4f4;
-    padding: 5rem 0;
+.BloqDetails {
+  background: linear-gradient(1.02deg, rgb(244, 244, 244) 75%, #b9d6f0 95.91%);
+  padding: 5rem 0;
 
-    .Bloq-Details-hero{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        width: 1300px;
-        height: 600px;
-        margin:  0  0 3rem ;
-    }
-      
-      .bloq-details-img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+  .Bloq-Details-hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 1300px;
+    height: 600px;
+    margin: 0 0 3rem;
+  }
+
+  .bloq-details-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bloq-details-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 25px;
+    align-items: flex-end;
+  }
+
+  .bloq-details-text {
+    color: white;
+    font-size: 38px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .bloq-date,
+  .bloq-views {
+    color: #fff;
+    margin: 5px;
+
+  }
+
+  .Bloq-Details-footer {
+    .bloq-box {
+      margin: 20px 0;
+      background-color: #fff;
+      border-radius: 10px;
+
+      .bloq-box-content {
+        padding: 10px 100px 10px 10px;
       }
-      
-      .bloq-details-content{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
+
+      .bloq-box-info {
+
+        padding: 10px 10px;
         display: flex;
         justify-content: space-between;
-        padding: 50px 25px;
-        align-items: flex-end;
       }
-      
-      .bloq-details-text{
-        color: white;
-        font-size: 38px;
-        text-align: left;
-        font-weight: bold;
-      }
-      .bloq-date,
-      .bloq-views{
-        color: #fff;
-        margin: 5px;
-        
-      }
-      .Bloq-Details-footer{
-        .bloq-box{
-            margin: 20px 0;
-        background-color: #fff;
-        border-radius: 10px;
-        .bloq-box-content {
-            padding: 10px 100px 10px 10px;
-        }
-        .bloq-box-info{
-            
-            padding: 10px 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        }
-      }
+    }
+  }
 
 }
