@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { AccountApi } from "./api/account.api";
+import { AccountApi } from './api/account.api';
 import { notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,9 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loginLoading, setLoginLoading] = useState(false);
-  
-  const navigate = useNavigate(); 
+  const [remainingTime, setRemainingTime] = useState(0); // Remaining time for countdown in seconds
+
+  const navigate = useNavigate();
 
   const openNotification = (message, description, error = false) => {
     notification[error ? 'error' : 'info']({
@@ -26,7 +27,33 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
-    setLoggedIn(storedLoggedIn ? JSON.parse(storedLoggedIn) : false);
+    const storedExpiration = localStorage.getItem('tokenExpiration');
+
+    if (storedLoggedIn && storedExpiration) {
+      const currentTime = new Date().getTime();
+      if (currentTime > storedExpiration) {
+        logout(); // Token expired, log out
+      } else {
+        setLoggedIn(true); // Token is still valid
+        const remaining = (storedExpiration - currentTime) / 1000; // Calculate remaining time
+        setRemainingTime(remaining);
+
+        // Start countdown timer if valid token
+        const countdownInterval = setInterval(() => {
+          setRemainingTime((prevTime) => {
+            if (prevTime <= 1) {
+              clearInterval(countdownInterval);
+              logout(); // Automatically logout when timer reaches 0
+              return 0;
+            }
+            return prevTime - 1;
+          });
+        }, 1000);
+      }
+    } else {
+      setLoggedIn(false);
+    }
+
     setLoading(false);
   }, []);
 
@@ -34,9 +61,28 @@ export const AuthProvider = ({ children }) => {
     setLoginLoading(true);
     try {
       const res = await AccountApi.Login({ userName, password });
+      const expirationTime = new Date().getTime() + 2 * 60 * 60 * 1000;
+      const remaining = (expirationTime - new Date().getTime()) / 1000;
+
       setLoggedIn(true);
       localStorage.setItem('loggedIn', true);
       localStorage.setItem('token', res.token);
+      localStorage.setItem('tokenExpiration', expirationTime);
+
+      setRemainingTime(remaining);
+
+      // Start countdown timer
+      const countdownInterval = setInterval(() => {
+        setRemainingTime((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(countdownInterval);
+            logout(); // Automatically logout when timer reaches 0
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+
       navigate('/');
     } catch (error) {
       if (error.response) {
@@ -44,7 +90,6 @@ export const AuthProvider = ({ children }) => {
         let message = 'Giriş Xətası';
         let description = 'Yenidən cəhd edin.';
         navigate('/Login');
-
 
         if (status === 400) {
           description = 'Yanlış e-poçt və ya parol, yenidən cəhd edin.';
@@ -63,7 +108,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (fullName, lastName, userName, email, password, rePassword,) => {
+  const register = async (fullName, lastName, userName, email, password, rePassword) => {
     setLoginLoading(true);
     try {
       const res = await AccountApi.register({ fullName, lastName, userName, email, password, rePassword });
@@ -74,7 +119,6 @@ export const AuthProvider = ({ children }) => {
         description: 'Doğrulama e-postası göndərildi. Zəhmət olmasa e-postanızı yoxlayın!',
       });
       navigate('/Login');
-
     } catch (error) {
       setLoggedIn(false);
       navigate('/Register');
@@ -103,11 +147,14 @@ export const AuthProvider = ({ children }) => {
     setLoggedIn(false);
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('token');
+    localStorage.removeItem('google-token');
+    localStorage.removeItem('tokenExpiration');
   };
 
   return (
     <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, logout, openNotification }}>
       {children}
+
     </AuthContext.Provider>
   );
 };

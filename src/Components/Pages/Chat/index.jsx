@@ -104,7 +104,11 @@ function Chat() {
                     <div className="leftbar h-100 d-flex flex-column justify-content-between bg-turkuaz">
                         <div>
                             <div className='d-flex justify-content-between homburger'>
-                                <span className='fw-400 fs-24 text-black'>E-legal</span>
+                                <span className='fw-400 fs-24 text-black'>
+                                    <a href="/">
+                                        E-legal
+                                    </a>
+                                </span>
                             </div>
                             <div className="d-flex bg-turkuaz flex-column justify-content-between">
                                 <button className='Chat-button mt-3 d-flex align-items-center justify-content-between'>
@@ -143,7 +147,7 @@ function Chat() {
                 <div className="col d-flex">
                     <div className="ChatRight w-100 d-flex flex-column mt-4 justify-content-end">
                         <div className="overflow">
-                        {messages.map((msg, index) => (
+                            {messages.map((msg, index) => (
                                 <div key={index} className={`d-flex ${msg.sender === 'user' ? 'justify-content-end' : ''}`}>
                                     <div className={`box${msg.sender === 'user' ? 'Right' : 'Left'} position-relative mb-4 me-2`}>
                                         {msg.sender === 'user' && (
@@ -158,7 +162,7 @@ function Chat() {
                                                 <span className='fs-20 fw-400'>
                                                     <img src={images.bot} alt="" />
                                                     {msg.text}
-                                                    
+
                                                 </span>
                                             </>
                                         )}

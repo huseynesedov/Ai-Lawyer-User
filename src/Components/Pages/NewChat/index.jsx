@@ -24,7 +24,7 @@ function NewChat() {
             if (token) {
                 const decodedToken = jwtDecode(token);
                 const userId = decodedToken.id;
-                setUsername(decodedToken.UserName || ""); 
+                setUsername(decodedToken.UserName || "");
 
                 const response = await ChatApi.getChats(userId);
 
@@ -104,7 +104,11 @@ function NewChat() {
                     <div className="leftbar h-100 d-flex flex-column justify-content-between bg-turkuaz">
                         <div>
                             <div className='d-flex justify-content-between homburger'>
-                                <span className='fw-400 fs-24 text-black'>E-legal</span>
+                                <span className='fw-400 fs-24 text-black'>
+                                    <a href="/">
+                                        E-legal
+                                    </a>
+                                </span>
                             </div>
                             <div className="d-flex bg-turkuaz flex-column justify-content-betwee">
                                 <Link to={"/NewChat"}></Link>
