@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import images from '../../../Assets/Images/js/images';
 
-
+import { FaInstagram } from "react-icons/fa";
 function Footer() {
 
 
@@ -12,27 +13,43 @@ function Footer() {
                     <div className="col-xl-3">
                         <div className="footer-info">
                             <Link href="/">
-                                <p className='fs-28 fw-400'>
-                                    E-Legal
-                                </p>
+                                <div className='w-100'>
+                                    <img className='w-100' src={images.Logo2} alt="" />
+                                </div>
                             </Link>
-                            <p>Lorem ipsum dolor sit amet consectetur.</p>
                         </div>
                     </div>
                     <div className="col-xl-2">
-                            <Link to={"/Faq"}>
-                                <h5>FAQ</h5>
-                            </Link>
+                        <Link to={"/Faq"}>
+                            <h5>FAQ</h5>
+                        </Link>
+
                     </div>
                     <div className="col-xl-2">
                         <Link to={"/Kontakt"}>
-                                <h5>Kontakt</h5>
-                            </Link>
+                            <h5>Kontakt</h5>
+                        </Link>
+                        <div className='mt-4 mail'>
+                            <a href="mailto:admin@AILAWYER.AZ">
+                                admin@AILAWYER.AZ
+                            </a>
+                        </div>
+                        <div className='mt-2 mail'>
+                            <a href="mailto:info@AILAWYER.AZ">
+                                info@AILAWYER.AZ
+                            </a>
+                        </div>
+
                     </div>
                     <div className="col-xl-2">
                         <Link to={""}>
                             <h5>Sosial media</h5>
                         </Link>
+                        <div className="mt-3 insta">
+                            <a href="https://www.instagram.com/ailawyer.az/">
+                                <FaInstagram />
+                            </a>
+                        </div>
                     </div>
                     <div className="col-xl-2">
                         <div className="footer-chat d-flex flex-column gap-3">

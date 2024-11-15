@@ -13,6 +13,7 @@ import "./Assets/Styles/login.scss"
 import "./Assets/Styles/footer.scss"
 import "./Assets/Styles/chat.scss"
 import "./Assets/Styles/otp.scss"
+import "./Assets/Styles/bloqdetails.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

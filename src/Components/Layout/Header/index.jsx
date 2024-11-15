@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import images from '../../../Assets/Images/js/images';
+import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [userInfo, setUserInfo] = useState({ username: '', email: '' });
+    const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -26,6 +27,12 @@ function Header() {
     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
     const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setUserInfo(null);
+        closeMobileMenu();
+    };
 
     return (
         <>
@@ -69,32 +76,42 @@ function Header() {
                                 />
                             </div>
                             <div className={`UserDropOpen ${isDropdownOpen ? 'open' : ''}`}>
-                                <div className="UserInfo">
-                                    <span className='t-44'>{userInfo.UserName || ""}</span>
-                                    <div className='t-79'>{userInfo.Email || ""}</div>
-                                </div>
-                                <Link to={"/Login"}>
-                                    <div className="Login d-flex">
-                                        <img src={images.Login} alt="Login" />
-                                        <span className='t-79 ms-4'>Daxil ol</span>
-                                    </div>
-                                </Link>
-                                <Link to={"/Register"}>
-                                    <div className="Login d-flex">
-                                        <img src={images.Login} alt="Create Account" />
-                                        <span className='t-79 ms-4'>Hesab Yarat</span>
-                                    </div>
-                                </Link>
-                                <hr className='mt-5' style={{ border: "1px solid #E2E8F0" }} />
-                                <div className="t-79" style={{ marginTop: "-8px" }}>
-                                    Cixis
-                                </div>
+                                {userInfo ? (
+                                    <>
+                                        <div className="UserInfo">
+                                            <span className='t-44'>{userInfo.UserName}</span>
+                                            <div className='t-79'>{userInfo.Email}</div>
+                                        </div>
+                                        <hr className='mt-5' style={{ border: "1px solid #E2E8F0" }} />
+                                        <div 
+                                            className="t-79" 
+                                            style={{ marginTop: "-8px", cursor: "pointer" }} 
+                                            onClick={handleLogout}
+                                        >
+                                            Çıxış
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to={"/Login"}>
+                                            <div className="Login d-flex">
+                                                <img src={images.Login} alt="Login" />
+                                                <span className='t-79 ms-4'>Daxil ol</span>
+                                            </div>
+                                        </Link>
+                                        <Link to={"/Register"}>
+                                            <div className="Login d-flex">
+                                                <img src={images.Login} alt="Create Account" />
+                                                <span className='t-79 ms-4'>Hesab Yarat</span>
+                                            </div>
+                                        </Link>
+                                    </>
+                                )}
                             </div>
                         </div>
 
-                        {/* Mobile Menu Toggle Button */}
                         <div className="menu-toggle" onClick={toggleMobileMenu}>
-                            <img src={images.menuIcon} alt="Menu Icon" />
+                        <RxHamburgerMenu />
                         </div>
                     </div>
                 </div>

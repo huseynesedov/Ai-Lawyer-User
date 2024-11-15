@@ -32,6 +32,12 @@ a{
     color: transparent ;
     text-decoration: none !important;
 }
+ol{
+    list-style: none;
+}
+ul{
+    list-style: disc;
+}
 
 body{
     position: relative;

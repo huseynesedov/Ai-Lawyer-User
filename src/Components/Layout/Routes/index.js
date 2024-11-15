@@ -18,6 +18,7 @@ import Otp from "../../Pages/Login/otp";
 import ResetPassword from "../../Pages/Login/resetPassword";
 import ChatDetail from "../../Pages/ChatDetail/index";
 import NewChat from "../../Pages/NewChat";
+import BloqDetails from "../../Pages/Bloqdetails";
 
 
 const RouteList = () => {
@@ -52,6 +53,16 @@ const RouteList = () => {
             <>
               <Header />
               <Bloq />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Bloq-details"
+          element={
+            <>
+              <Header />
+              <BloqDetails />
               <Footer />
             </>
           }

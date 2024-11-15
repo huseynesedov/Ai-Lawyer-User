@@ -24,14 +24,18 @@ import bloqcard6 from '../bloqcard6.svg'
 import clockicon from '../clockicon.svg'
 import bloqcardicon from '../bloqcardicon.svg'
 import kontaktimg from '../kontaktimg.svg'
+import bloqdetails from '../bloqdetails.svg'
+import clockwhite from '../clockwhite.svg'
 
 
 import Login from '../Vector.svg'
+import Logo2 from '../logo.png'
 import user from '../1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg'
 
 
 export default {
     Logo,
+    Logo2,
     google,
     mail,
     Mockup,
@@ -57,5 +61,7 @@ export default {
     bloqcardicon,
     kontaktimg,
     user,
-    Login
+    Login,
+    bloqdetails,
+    clockwhite
 }
