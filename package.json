@@ -11,6 +11,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "history": "^5.3.0",
     "js-cookie": "^3.0.5",
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+ 
+
+  },
+     "proxy": "https://url.ailawyer.az"
 }

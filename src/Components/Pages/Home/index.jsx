@@ -7,16 +7,17 @@ function Home() {
     const navigate = useNavigate();
 
     const handleChatStart = () => {
+        // Token kontrolü yap
         const token = localStorage.getItem('token');
         const googleToken = localStorage.getItem('google-token');
-
         if (!token && !googleToken) {
-            navigate('/Register');
+            navigate('/login?returnUrl=/Chat');
             notification.info({
                 description: 'Çata başlamaq üçün əvvəlcə giriş etməlisiniz.',
                 placement: 'topRight',
             });
         } else {
+            // Eğer token varsa, kullanıcıyı Chat sayfasına yönlendir
             navigate('/Chat');
         }
     };

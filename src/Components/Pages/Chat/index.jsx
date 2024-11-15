@@ -1,5 +1,6 @@
 // Chat.js
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import images from '../../../Assets/Images/js/images';
 import { ChatApi } from '../../../api/chat.api';
@@ -20,7 +21,7 @@ function Chat() {
 
     const fetchChats = async () => {
         try {
-            const token = localStorage.getItem('token');
+            let token = localStorage.getItem('token') || localStorage.getItem('google-token');
             if (token) {
                 const decodedToken = jwtDecode(token);
                 const userId = decodedToken.id;
@@ -41,7 +42,8 @@ function Chat() {
 
     useEffect(() => {
         fetchChats();
-    }, []);
+    }, [chatId]); // chatId değiştiğinde fetchChats çağrılır
+    
 
     const handleSendMessage = async () => {
         if (message.trim()) {
@@ -56,28 +58,32 @@ function Chat() {
                 const loadingMessage = { sender: 'bot', text: '', loading: true };
                 setMessages(prevMessages => [...prevMessages, loadingMessage]);
 
-                setTimeout(async () => {
-                    const params = { message, chatId };
+                // Eğer chatId 0 ise, backend yeni bir chat oluşturacak.
+                const params = chatId !== 0 ? { message, chatId } : { message };
 
-                    const response = await ChatApi.sendMessage(params);
+                const response = await ChatApi.sendMessage(params);
 
-                    const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
-                    setMessages(prevMessages => {
-                        const updatedMessages = [...prevMessages];
-                        updatedMessages[updatedMessages.length - 1] = botResponse;
-                        return updatedMessages;
-                    });
+                // Eğer yeni bir chat oluşturulduysa, chatId'yi güncelle
+                if (response.chatId && chatId === 0) {
+                    setChatId(response.chatId);
+                }
 
-                    if (response.botResponse.includes("PDF məzmunu oxumaq qabiliyyətinə malik deyiləm") ||
-                        response.botResponse.includes("Sualınız çox mürəkkəbdir və ya mənim sahəmdən kənardır zəhmət olmasa hüquqi məsləhətçiyə müraciət edin") ||
-                        response.botResponse.includes("Hata mesajı 2") ||
-                        response.botResponse.includes("Hata mesajı 3") ||
-                        response.botResponse.includes("Hata mesajı 4")) {
-                        setShowContactButton(true);
-                    }
+                const botResponse = { sender: 'bot', text: response.botResponse, loading: false };
+                setMessages(prevMessages => {
+                    const updatedMessages = [...prevMessages];
+                    updatedMessages[updatedMessages.length - 1] = botResponse;
+                    return updatedMessages;
+                });
 
-                    setIsInputDisabled(false);
-                }, 1);
+                if (response.botResponse.includes("PDF məzmunu oxumaq qabiliyyətinə malik deyiləm") ||
+                    response.botResponse.includes("Sualınız çox mürəkkəbdir və ya mənim sahəmdən kənardır zəhmət olmasa hüquqi məsləhətçiyə müraciət edin") ||
+                    response.botResponse.includes("Hata mesajı 2") ||
+                    response.botResponse.includes("Hata mesajı 3") ||
+                    response.botResponse.includes("Hata mesajı 4")) {
+                    setShowContactButton(true);
+                }
+
+                setIsInputDisabled(false);
             } catch (error) {
                 console.error("Message sending error:", error.response?.data || error.message);
                 setIsInputDisabled(false);
@@ -89,11 +95,12 @@ function Chat() {
         setIsScrollOpen(prevState => !prevState);
         setIsArrowRotated(prevState => !prevState);
     };
-
-    const handleChatClick = (chatId) => {
-        console.log(chatId);
-        navigate(`/ChatDetail/${chatId}`);
+    const handleChatClick = (selectedChatId) => {
+        setChatId(selectedChatId); // chatId'yi güncelle
+        console.log(selectedChatId);
+        navigate(`/ChatDetail/${selectedChatId}`);
     };
+    
 
     return (
         <div className="container">
@@ -117,16 +124,22 @@ function Chat() {
                                         <img src={images.arrowdown} alt="" className={isArrowRotated ? 'rotated' : ''} />
                                     </button>
                                     <div className={`scrool ${isScrollOpen ? 'open' : 'closed'}`}>
-                                        {chatHistory.length > 0 ? (
-                                            chatHistory.map((chat) => (
-                                                <button className="arxiv justify-content-between" key={chat.id} onClick={() => handleChatClick(chat.id)}>
-                                                    <h5 className='fs-15'>{chat.title}</h5>
-                                                    <img src={images.arrowdown} alt="" />
-                                                </button>
-                                            ))
-                                        ) : (
-                                            <p>No chat history available.</p>
-                                        )}
+
+                                    {chatHistory.length > 0 ? (
+    chatHistory.map((chat) => (
+        <button
+            className="arxiv justify-content-between"
+            key={chat.id}
+            onClick={() => handleChatClick(chat.id)} // Doğru chatId'yi gönder
+        >
+            <h5 className='fs-15'>{chat.title}</h5>
+            <img src={images.arrowdown} alt="" />
+        </button>
+    ))
+) : (
+    <p>No chat history available.</p>
+)}
+
                                     </div>
                                 </div> */}
                             </div>

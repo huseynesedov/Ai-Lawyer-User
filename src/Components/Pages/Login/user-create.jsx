@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext';
 import images from '../../../Assets/Images/js/images';
 import { notification } from 'antd';
@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [fullName, setFullName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -18,6 +19,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
+  // Şifre doğrulama fonksiyonu
   const validatePassword = (password) => {
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);
@@ -26,6 +28,7 @@ function Register() {
     return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
   };
 
+  // Kayıt butonuna tıklandığında çalışacak fonksiyon
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -57,38 +60,43 @@ function Register() {
     
   };
 
+  // Google Token işleme
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
+    const returnUrl = params.get('returnUrl');
 
     if (token) {
       localStorage.setItem('google-token', token);
       const expirationTime = new Date().getTime() + 12 * 60 * 60 * 1000;
       localStorage.setItem('google-token_expiration', expirationTime);
 
-      navigate('/');
+      // returnUrl varsa ona git, yoksa anasayfaya git
+      navigate(returnUrl || '/');
     }
   }, [navigate]);
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = () => {
     try {
-      
       localStorage.removeItem('token');
-      window.location.href = 'https://hashimovtabriz.com.tr/api/Auth/google-login';
+      // returnUrl'i sakla ve Google login URL'ine yönlendir
+      const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
+      window.location.href = `https://url.ailawyer.az/api/Auth/google-login`;
     } catch (error) {
-      console.error("Google girish ugurlu: ", error);
+      console.error("Google giriş uğursuz: ", error);
       notification.error({
         message: 'Xəta',
-        description: 'Google girish zamanı xəta baş verdi!',
+        description: 'Google giriş zamanı xəta baş verdi!',
       });
     }
   };
+  
 
   return (
     <div className='login mt-5'>
       <div className="login-in">
         <div className="login-box">
-          <h2>Hesaba Yaradın</h2>
+          <h2>Hesab Yaradın</h2>
 
           <form onSubmit={handleRegister}>
             <label>
