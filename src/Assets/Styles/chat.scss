@@ -152,7 +152,7 @@ button {
 
 /* Scroll Styling */
 .scrool.open {
-    margin-top: 10px;
+    margin-top: 17px;
     max-height: 324px;
     overflow-y: auto;
 }
@@ -217,7 +217,9 @@ button {
     bottom: 0;
 
 }
-
+.h-600 {
+    height: 670px;
+}
 /* Responsive Styling for Mobile */
 @media (max-width: 768px) {
     .leftbar {
@@ -230,6 +232,10 @@ button {
 
     .ChatRight {
         margin-top: 80px;
+    }
+
+    .h-600 {
+        height: 600px;
     }
 
     .boxLeft {

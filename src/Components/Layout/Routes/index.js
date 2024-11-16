@@ -15,12 +15,11 @@ import Chat from "../../Pages/Chat";
 import Kontakt from "../../Pages/Kontakt";
 import Otp from "../../Pages/Login/otp";
 import ResetPassword from "../../Pages/Login/resetPassword";
-import NewChat from "../../Pages/NewChat";
 import BloqDetails from "../../Pages/Bloqdetails";
 import PrivateRoute from "./PrivateRoute";
 
 const RouteList = () => {
-  const [selectedBloq,setSelectedBloq] = useState(null)
+  const [selectedBloq, setSelectedBloq] = useState(null)
   const { loginLoading } = useAuth();
 
   return (
@@ -51,7 +50,7 @@ const RouteList = () => {
           element={
             <>
               <Header />
-              <Bloq setSelectedBloq={setSelectedBloq}/>
+              <Bloq setSelectedBloq={setSelectedBloq} />
               <Footer />
             </>
           }
@@ -76,7 +75,7 @@ const RouteList = () => {
             </>
           }
         />
-        
+
         <Route
           path="/Login"
           element={
@@ -127,15 +126,7 @@ const RouteList = () => {
               </>
             }
           />
-          
-          <Route
-            path="/NewChat"
-            element={
-              <>
-                <NewChat />
-              </>
-            }
-          />
+
         </Route>
       </Routes>
     </>
