@@ -16,6 +16,10 @@ import "./Assets/Styles/otp.scss"
 import "./Assets/Styles/bloqdetails.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+// ..
+AOS.init();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext';
 import Cookies from 'js-cookie';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { notification } from 'antd'; 
+import { notification } from 'antd';
 import images from '../../../Assets/Images/js/images'; // Google giriş görseli
 
 function Login() {
@@ -26,7 +26,6 @@ function Login() {
       setReturnUrl(returnUrlParam);
     }
 
-    // Cookie'den email almak için
     const emailFromCookie = Cookies.get('email');
     if (emailFromCookie && !initialUserName) {
       setUserName(emailFromCookie);
@@ -35,7 +34,7 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-  
+
     if (!userName || !password) {
       notification.error({
         message: 'Xəta !',
@@ -44,14 +43,13 @@ function Login() {
       });
       return;
     }
-  
+
     localStorage.removeItem('google-token');
     localStorage.removeItem('google-token_expiration');
-  
+
     login(userName, password)
       .then(() => {
         Cookies.remove('email');
-        navigate(returnUrl || '/'); // Giriş başarılı olursa returnUrl parametresine yönlendir
       })
       .catch((error) => {
         console.error("Giriş xətası: ", error);
@@ -66,11 +64,13 @@ function Login() {
   const handleGoogleLogin = () => {
     try {
       localStorage.removeItem('token');
-      // returnUrl'i sakla ve Google login URL'ine yönlendir
       const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
       window.location.href = `https://url.ailawyer.az/api/Auth/google-login`;
+      notification.success({
+        message: 'Uğurlu',
+        description: 'Google girişi uğurlu !',
+      });
     } catch (error) {
-      console.error("Google giriş uğursuz: ", error);
       notification.error({
         message: 'Xəta',
         description: 'Google giriş zamanı xəta baş verdi!',

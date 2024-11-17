@@ -14,32 +14,32 @@ function Faq() {
         <div className="row d-flex align-items-center justify-content-center">
           <div className="col-xl-6">
             <div className="details-box">
-              <details>
+              <details data-aos="fade-right">
                 <summary>
                   “AI lawyer” nədir?
                 </summary>
                 <p>“AI lawyer” hüquqi suallarınıza cavab verən onlayn platformadır. Burada Azərbaycan qanunvericiliyi ilə bağlı suallar verə, FAQ bölməsində ümumi məlumatlara baxa və vəkillə məsləhətləşmə randevusu ala bilərsiniz.</p>
               </details>
-              <details>
+              <details data-aos="fade-left">
                 <summary>
                   Necə qeydiyyatdan keçə bilərəm?
                 </summary>
                 <p>Saytda qeydiyyatdan keçmək üçün “Qeydiyyat” düyməsini klikləyin və tələb olunan məlumatları daxil edin. E-poçtunuza gələn təsdiq linkini aktivləşdirərək hesabınızı təsdiqləyin.</p>
               </details>
-              <details>
+              <details data-aos="fade-right">
                 <summary>
                   Necə sual verə bilərəm və gündə neçə sual verə bilərəm?
                 </summary>
                 <p>Qeydiyyatdan keçdikdən sonra “Çata başla” bölməsindən sualınızı verə bilərsiniz. Hər gün 10 sual vermək mümkündür və sual limiti 24 saatdan sonra yenilənir.</p>
               </details>
-              <details>
+              <details data-aos="fade-left">
                 <summary>
                   Bir sual üçün neçə cavab ala bilərəm?
                 </summary>
                 <p>Hər sual üçün bir cavab verilir. Əgər əlavə məlumat lazımdırsa, yeni sual verə bilərsiniz.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-right">
                 <summary>
                   Vəkillə məsləhətləşmə necə olur?
 
@@ -47,7 +47,7 @@ function Faq() {
                 <p>Vəkillə məsləhətləşmək üçün “Məsləhət alın” bölməsindən formu doldurun və uyğun vaxt seçərək randevu alın. Vəkil sizinlə əlaqə saxlayacaq.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-left">
                 <summary>
                   Platformanın istifadəsi ödənişlidirmi?
 
@@ -55,21 +55,21 @@ function Faq() {
                 <p>Gün ərzində 10 sual vermək ödənişsizdir. Lakin fərdi vəkillə məsləhət xidmətləri ödənişli ola bilər.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-right">
                 <summary>
                   Şəxsi məlumatlarım necə qorunur?
                 </summary>
                 <p>Platformamızda şəxsi məlumatlarınız tam məxfi saxlanılır və üçüncü tərəflərə ötürülmür. Məlumatlar şifrələnmiş şəkildə qorunur.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-left">
                 <summary>
                   AI cavabları hüquqi məsləhət kimi istifadə edilə bilərmi?
                 </summary>
                 <p>Süni intellektin cavabları ümumi məlumat xarakteri daşıyır və rəsmi hüquqi məsləhət yerinə keçmir. Konkret məsələlər üçün vəkillə məsləhət almaq tövsiyə olunur.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-right">
                 <summary>
                   Sayt hansı dillərdə mövcuddur?
 
@@ -77,7 +77,7 @@ function Faq() {
                 <p>Hazırda platformamız Azərbaycan dilində fəaliyyət göstərir, lakin gələcəkdə digər dillərin də əlavə edilməsi planlaşdırılır.
                 </p>
               </details>
-              <details>
+              <details data-aos="fade-left">
                 <summary>
                   Şifrəmi unutmuşam, nə etməliyəm?
                 </summary>

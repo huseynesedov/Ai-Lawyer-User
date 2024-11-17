@@ -16,7 +16,7 @@ function Bloq({ setSelectedBloq }) {
 
     const handleBloqClick = (bloq) => {
         setSelectedBloq(bloq);
-        navigate("/bloq-details", { state: { bloq } }); // Burada state vasitəsilə məlumatı göndəririk
+        navigate("/bloq-details", { state: { bloq } });
     };
 
     return (
@@ -29,7 +29,7 @@ function Bloq({ setSelectedBloq }) {
                 </div>
                 <div className="row justify-content-center">
                     {bloqData.map((item, index) => (
-                        <div className="col-xl-4" key={index}>
+                        <div className="col-xl-4" data-aos="zoom-in-up" key={index}>
                             <div className="bloq-box">
                                 <img src={item.img} className="bloq-card-img" alt={item.title} />
                                 <div className="bloq-box-content">

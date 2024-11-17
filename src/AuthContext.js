@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loginLoading, setLoginLoading] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(0); // Remaining time for countdown in seconds
+  const [remainingTime, setRemainingTime] = useState(0);
 
   const navigate = useNavigate();
 
@@ -32,18 +32,17 @@ export const AuthProvider = ({ children }) => {
     if (storedLoggedIn && storedExpiration) {
       const currentTime = new Date().getTime();
       if (currentTime > storedExpiration) {
-        logout(); // Token expired, log out
+        logout();
       } else {
-        setLoggedIn(true); // Token is still valid
-        const remaining = (storedExpiration - currentTime) / 1000; // Calculate remaining time
+        setLoggedIn(true);
+        const remaining = (storedExpiration - currentTime) / 1000;
         setRemainingTime(remaining);
 
-        // Start countdown timer if valid token
         const countdownInterval = setInterval(() => {
           setRemainingTime((prevTime) => {
             if (prevTime <= 1) {
               clearInterval(countdownInterval);
-              logout(); // Automatically logout when timer reaches 0
+              logout();
               return 0;
             }
             return prevTime - 1;
@@ -70,13 +69,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('tokenExpiration', expirationTime);
 
       setRemainingTime(remaining);
-
-      // Start countdown timer
       const countdownInterval = setInterval(() => {
         setRemainingTime((prevTime) => {
           if (prevTime <= 1) {
             clearInterval(countdownInterval);
-            logout(); // Automatically logout when timer reaches 0
+            logout();
             return 0;
           }
           return prevTime - 1;
@@ -154,7 +151,6 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{ loggedIn, loading, loginLoading, login, register, logout, openNotification }}>
       {children}
-
     </AuthContext.Provider>
   );
 };

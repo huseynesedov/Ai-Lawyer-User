@@ -7,7 +7,6 @@ function Home() {
     const navigate = useNavigate();
 
     const handleChatStart = () => {
-        // Token kontrolü yap
         const token = localStorage.getItem('token');
         const googleToken = localStorage.getItem('google-token');
         if (!token && !googleToken) {
@@ -17,7 +16,6 @@ function Home() {
                 placement: 'topRight',
             });
         } else {
-            // Eğer token varsa, kullanıcıyı Chat sayfasına yönlendir
             navigate('/Chat');
         }
     };
@@ -30,11 +28,11 @@ function Home() {
                         <div className="col-xl-6">
                             <div className="home-hero-content d-flex flex-column align-items-end gap-4">
                                 <div>
-                                    <h3 style={{ fontSize: "32px" }}>Aİ virtual hüqüqşünas sizin virtual hüquq məsləhətçinizdir.</h3>
-                                    <p className='mt-4' style={{ fontSize: "20px" }}>Bahalı hüquq məsləhətləri, görüşlər üçün uzun müddət gözləmələr və çaşqın hüquqi mətnlərlə vidalaşın.</p>
+                                    <h3 data-aos="fade-right" style={{ fontSize: "32px" }}>Aİ virtual hüqüqşünas sizin virtual hüquq məsləhətçinizdir.</h3>
+                                    <p data-aos="fade-right" className='mt-4' style={{ fontSize: "20px" }}>Bahalı hüquq məsləhətləri, görüşlər üçün uzun müddət gözləmələr və çaşqın hüquqi mətnlərlə vidalaşın.</p>
                                 </div>
                                 <div className='ai-start mt-4'>
-                                    <button onClick={handleChatStart}>
+                                    <button data-aos="zoom-in" onClick={handleChatStart}>
                                         Çata başla
                                         <img className='ms-1' src={images.arrowright} alt="" />
                                     </button>
@@ -43,28 +41,28 @@ function Home() {
                         </div>
                         <div className="col-xl-6 d-flex align-item-center justify-content-center">
                             <div className="home-hero-img">
-                                <img src={images.Mockup} className='w-100' alt="" />
+                                <img data-aos="fade-left" src={images.Mockup} className='w-100' alt="" />
                             </div>
                         </div>
                         <div>
                         </div>
                         <div className='position-relative'>
-                            <img className='position-absolute bezek1' src={images.bezek_2} alt="" />
-                            <img className='position-absolute bezek2' src={images.bezek_1} alt="" />
+                            <img className='position-absolute bezek1' data-aos="fade-up" src={images.bezek_2} alt="" />
+                            <img className='position-absolute bezek2' data-aos="fade-down" src={images.bezek_1} alt="" />
                         </div>
                     </div>
                 </div>
                 <div className='home-info mt-5'>
                     <div className="row justify-content-between">
                         <div className="col">
-                            <div className="home-info-content text-blue">
+                            <div className="home-info-content text-blue" data-aos="fade-right">
                                 <h2 className='fw-700 fs-36'>AI hüquqşünas necə işləyir?</h2>
                             </div>
                         </div>
                         <div className='col-xl-4'>
-                            <div className="home-info-box ">
+                            <div className="home-info-box " data-aos="fade-left">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard1} alt="" />
+                                    <img data-aos="zoom-in-up" src={images.homecard1} alt="" />
                                     <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fs-24 fw-600'>İnternetlə işləyir</p>
                                         <p className='fs-20 fw-400'>Sürətli veb araşdırması, saatlarla təhlili saniyələr ərzində tamamlayır.</p>
@@ -74,10 +72,10 @@ function Home() {
                         </div>
                     </div>
                     <div className="row justify-content-start">
-                        <div className='col-xl-4'>
+                        <div className='col-xl-4' data-aos="fade-right">
                             <div className="home-info-box">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard2} alt="" />
+                                    <img data-aos="zoom-in-up" src={images.homecard2} alt="" />
                                     <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fs-24 fw-600'>Çox platformalı</p>
                                         <p className='fs-20 fw-400'>Platformamıza sadə bir toxunuşla daxil olun – internetdə, iOS və ya Android-də.</p>
@@ -87,10 +85,10 @@ function Home() {
                         </div>
                     </div>
                     <div className="row justify-content-end">
-                        <div className='col-xl-4'>
+                        <div className='col-xl-4' data-aos="fade-left">
                             <div className="home-info-box">
                                 <div className="home-info-box-in">
-                                    <img src={images.homecard3} alt="" />
+                                    <img data-aos="zoom-in-up" src={images.homecard3} alt="" />
                                     <div className="home-info-box-content d-flex flex-column">
                                         <p className='text-blue fs-24 fw-600'>Sizin üçün fərdiləşdirilmişdir</p>
                                         <p className='fs-20 fw-400'>Unikal seçimlərinizə uyğunlaşdırmaq üçün onu fərdiləşdirin və öyrədin.</p>

@@ -12,7 +12,6 @@ function Kontakt() {
         message: ''
     });
 
-    // Handle input change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevData => ({
@@ -21,7 +20,6 @@ function Kontakt() {
         }));
     };
 
-    // Show notification
     const openNotification = (type, message) => {
         notification[type]({
             message: message,
@@ -30,14 +28,11 @@ function Kontakt() {
         });
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if all fields are filled
         const isFormComplete = Object.values(formData).every(field => field.trim() !== "");
         if (!isFormComplete) {
-            // Show error notification for empty fields
             openNotification('error', 'Zəhmət olmasa bütün sahələri doldurun.');
             return;
         }
@@ -52,12 +47,9 @@ function Kontakt() {
 
         try {
             const response = await AccountApi.submitForm(dataToSend);
-            console.log("Form submitted successfully:", response.data);
 
-            // Show success notification
-            openNotification('success', 'Mesajınız uğurla göndərildi.');
+            openNotification('Uğurlu !', 'Mesajınız uğurla göndərildi.');
 
-            // Clear form
             setFormData({
                 fullName: '',
                 email: '',
@@ -66,10 +58,8 @@ function Kontakt() {
                 message: ''
             });
         } catch (error) {
-            console.error("Error submitting form:", error);
 
-            // Show error notification
-            openNotification('error', 'Mesaj göndəriləmədi. Xaiş olunur təkrar yoxlayın.');
+            openNotification('Xəta !', 'Mesaj göndəriləmədi. Xaiş olunur təkrar yoxlayın.');
         }
     };
 
@@ -77,10 +67,10 @@ function Kontakt() {
         <div className='Kontakt'>
             <div className="container">
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-xl-4">
-                        <h2 className='kontakt-header'>Bizimlə əlaqə</h2>
+                    <div className="col-xl-4" data-aos="fade-right">
+                        <h2 className='kontakt-header' >Bizimlə əlaqə</h2>
                     </div>
-                    <div className="col-xl-6">
+                    <div className="col-xl-6" data-aos="fade-left">
                         <img src={images.kontaktimg} alt="" className='kontakt-img' />
                     </div>
                 </div>
@@ -92,7 +82,7 @@ function Kontakt() {
                 <form onSubmit={handleSubmit}>
                     <div className="row gap-5">
                         <div className="row justify-content-center">
-                            <div className="col-xl-3">
+                            <div className="col-xl-3" data-aos="fade-right">
                                 <input
                                     type="text"
                                     placeholder="Ad, soyad"
@@ -102,7 +92,7 @@ function Kontakt() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="col-xl-3">
+                            <div className="col-xl-3" data-aos="fade-left">
                                 <input
                                     type="text"
                                     placeholder="Subject"
@@ -114,7 +104,7 @@ function Kontakt() {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <div className="col-xl-3">
+                            <div className="col-xl-3" data-aos="fade-right">
                                 <input
                                     type="text"
                                     placeholder="G-mail"
@@ -124,7 +114,7 @@ function Kontakt() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="col-xl-3">
+                            <div className="col-xl-3" data-aos="fade-left">
                                 <input
                                     type="text"
                                     placeholder="Number"
@@ -136,7 +126,7 @@ function Kontakt() {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <div className="col-xl-6">
+                            <div className="col-xl-6" data-aos="zoom-in-up">
                                 <input
                                     type="text"
                                     className='message-input'
@@ -147,9 +137,9 @@ function Kontakt() {
                                 />
                             </div>
                         </div>
-                        <div className="row justify-content-end">
+                        <div className="row justify-content-end" >
                             <div className="col-xl-6">
-                                <button type="submit" className='message-send-btn ms-3'>Göndər</button>
+                                <button data-aos="zoom-out-down" type="submit" className='message-send-btn ms-3'>Göndər</button>
                             </div>
                         </div>
                     </div>
