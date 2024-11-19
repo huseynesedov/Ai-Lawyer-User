@@ -42,18 +42,16 @@ function Header() {
                         <div className="logo_SearchBar">
                             <Link to={"/"}>
                                 <p className='fs-28 fw-400 color-black'>
-                                    E-Legal
+                                    Ai Lawyer
                                 </p>
                             </Link>
                         </div>
-
-                        {/* Desktop Menu */}
                         <nav className="nav_menu">
                             <ul>
                                 <Link to={"/"}><li>Ana Səhifə</li></Link>
                                 <Link to={"/Faq"}><li>FAQ</li></Link>
                                 <Link to={"/Bloq"}><li>Bloq</li></Link>
-                                <Link to={"/Kontakt"}><li>Kontakt</li></Link>
+                                <Link to={"/Kontakt"}><li>Əlaqə</li></Link>
                             </ul>
                         </nav>
 
@@ -124,7 +122,7 @@ function Header() {
                             <Link to={"/"} onClick={closeMobileMenu}><li>Ana Səhifə</li></Link>
                             <Link to={"/Faq"} onClick={closeMobileMenu}><li>FAQ</li></Link>
                             <Link to={"/Bloq"} onClick={closeMobileMenu}><li>Bloq</li></Link>
-                            <Link to={"/Kontakt"} onClick={closeMobileMenu}><li>Kontakt</li></Link>
+                            <Link to={"/Kontakt"} onClick={closeMobileMenu}><li>Əlaqə</li></Link>
                         </ul>
                     </nav>
                 </div>

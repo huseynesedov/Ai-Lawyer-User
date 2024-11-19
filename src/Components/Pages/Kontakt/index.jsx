@@ -11,13 +11,24 @@ function Kontakt() {
         subject: '',
         message: ''
     });
+    const [loading, setLoading] = useState(false); // Loading durumunu takip eder
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
+
+        // Sadece `phoneNumber` inputu için rakam kontrolü
+        if (name === 'phoneNumber') {
+            const onlyNumbers = value.replace(/[^0-9]/g, ''); // Harfleri kaldır
+            setFormData(prevData => ({
+                ...prevData,
+                [name]: onlyNumbers
+            }));
+        } else {
+            setFormData(prevData => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
     };
 
     const openNotification = (type, message) => {
@@ -26,6 +37,12 @@ function Kontakt() {
             placement: 'topRight',
             duration: 3
         });
+    };
+
+    const validateEmail = (email) => {
+        // Basit e-posta doğrulama regex'i
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     };
 
     const handleSubmit = async (e) => {
@@ -37,6 +54,11 @@ function Kontakt() {
             return;
         }
 
+        if (!validateEmail(formData.email)) {
+            openNotification('error', 'Düzgün e-mail ünvanı daxil edin.');
+            return;
+        }
+
         const dataToSend = {
             fullName: formData.fullName,
             email: formData.email,
@@ -45,10 +67,11 @@ function Kontakt() {
             message: formData.message
         };
 
+        setLoading(true); // Loading durumu aktif hale getiriliyor
         try {
-            const response = await AccountApi.submitForm(dataToSend);
+            await AccountApi.submitForm(dataToSend);
 
-            openNotification('Uğurlu !', 'Mesajınız uğurla göndərildi.');
+            openNotification('success', 'Mesajınız uğurla göndərildi.');
 
             setFormData({
                 fullName: '',
@@ -58,8 +81,9 @@ function Kontakt() {
                 message: ''
             });
         } catch (error) {
-
-            openNotification('Xəta !', 'Mesaj göndəriləmədi. Xaiş olunur təkrar yoxlayın.');
+            openNotification('error', 'Mesaj göndəriləmədi. Xaiş olunur təkrar yoxlayın.');
+        } finally {
+            setLoading(false); // Loading durumu pasif hale getiriliyor
         }
     };
 
@@ -68,7 +92,7 @@ function Kontakt() {
             <div className="container">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-xl-4" data-aos="fade-right">
-                        <h2 className='kontakt-header' >Bizimlə əlaqə</h2>
+                        <h2 className='kontakt-header'>Bizimlə əlaqə</h2>
                     </div>
                     <div className="col-xl-6" data-aos="fade-left">
                         <img src={images.kontaktimg} alt="" className='kontakt-img' />
@@ -137,9 +161,16 @@ function Kontakt() {
                                 />
                             </div>
                         </div>
-                        <div className="row justify-content-end" >
+                        <div className="row justify-content-end">
                             <div className="col-xl-6">
-                                <button data-aos="zoom-out-down" type="submit" className='message-send-btn ms-3'>Göndər</button>
+                                <button
+                                    data-aos="zoom-out-down"
+                                    type="submit"
+                                    className='message-send-btn ms-3'
+                                    disabled={loading}
+                                >
+                                    {loading ? 'Göndərilir...' : 'Göndər'}
+                                </button>
                             </div>
                         </div>
                     </div>

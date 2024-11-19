@@ -66,10 +66,7 @@ function Login() {
       localStorage.removeItem('token');
       const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
       window.location.href = `https://url.ailawyer.az/api/Auth/google-login`;
-      notification.success({
-        message: 'Uğurlu',
-        description: 'Google girişi uğurlu !',
-      });
+     
     } catch (error) {
       notification.error({
         message: 'Xəta',

@@ -19,7 +19,7 @@ function Footer() {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-xl-2">
+                    <div className="col-xl-3">
                         <Link to={"/Faq"}>
                             <h5>FAQ</h5>
                         </Link>
@@ -44,7 +44,7 @@ function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-2">
+                    <div className="col-xl-3">
                         <Link to={"/Kontakt"}>
                             <h5>Kontakt</h5>
                         </Link>
@@ -60,7 +60,7 @@ function Footer() {
                         </div>
 
                     </div>
-                    <div className="col-xl-2">
+                    <div className="col-xl-3">
                         <Link to={""}>
                             <h5>Sosial media</h5>
                         </Link>
@@ -68,13 +68,6 @@ function Footer() {
                             <a href="https://www.instagram.com/ailawyer.az/">
                                 <FaInstagram />
                             </a>
-                        </div>
-                    </div>
-                    <div className="col-xl-2">
-                        <div className="footer-chat d-flex flex-column gap-3">
-                            <p>Subscribe us</p>
-                            <input type="text" placeholder='Sizin mailiniz...' />
-                            <button>Chata başla</button>
                         </div>
                     </div>
                 </div>

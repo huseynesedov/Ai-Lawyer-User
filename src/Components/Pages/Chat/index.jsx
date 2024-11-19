@@ -13,8 +13,8 @@ function Chat() {
     const [isScrollOpen, setIsScrollOpen] = useState(false);
     const [isArrowRotated, setIsArrowRotated] = useState(false);
     const [username, setUsername] = useState("");
-    const [currentChatId, setCurrentChatId] = useState(0); // Varsayılan 0
-    const [isLoading, setIsLoading] = useState(false); // Loading state for overflow
+    const [currentChatId, setCurrentChatId] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchChats = async () => {
         try {
@@ -111,14 +111,14 @@ function Chat() {
                             <div className='d-flex justify-content-between homburger'>
                                 <span className='fw-400 fs-24 text-black'>
                                     <a href="/">
-                                        E-legal
+                                        Ai Lawyer
                                     </a>
                                 </span>
                             </div>
                             <div className="d-flex bg-turkuaz flex-column justify-content-between">
                                 <button
                                     className='Chat-button mt-3 d-flex align-items-center justify-content-between'
-                                    onClick={handleNewChat} // Yeni Mesaj düyməsinə basıldıqda
+                                    onClick={handleNewChat}
                                 >
                                     Yeni Chat
                                     <img src={images.plus} alt="" />
