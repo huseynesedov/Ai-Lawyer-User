@@ -37,6 +37,9 @@ ol{
 ul{
     list-style: disc;
 }
+.list-style-none{
+    list-style: none;
+}
 
 .text-black{
     color: #000;

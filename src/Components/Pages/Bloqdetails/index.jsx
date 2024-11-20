@@ -41,31 +41,31 @@ const BloqDetails = () => {
                   </div>
                   <div className="Bloq-Details-main">
                       <ol>
-                          <h4><li>1. {bloq.description}</li></h4>
-                          <li>1. {bloq.description} <br />Giriş <br />
-                              Tövsiyyə məktubu iş və ya təhsil imkanlarına müraciət edən şəxs haqqında fikir yaratmaq üçün mühüm rol oynayır. Ənənəvi olaraq, işəgötürənlər və təhsil müəssisələri müraciətçinin bacarıqları və xarakteri haqqında daha dərin məlumat almaq üçün tövsiyyə məktublarına etibar edirlər. Bu yazıda tövsiyyə məktubunun əhəmiyyəti, strukturu və ideal bir məktubun necə yazılacağı haqqında ətraflı danışacağıq.<br />Əsas Hissə
+                          <h4><li>{bloq.description}</li></h4>
+                          <li>{bloq.description} <br />Giriş <br />
+                              {bloq.header}<br />Əsas Hissə
                               <ul>
-                                  <li>Tövsiyyə Məktubu Nədir və Niyə Vacibdir? <br />
-                                      Tövsiyyə məktubu müraciətçinin keçmiş təcrübələrini və bacarıqlarını təsdiqləyən sənəddir. Müraciətçinin karyera və ya akademik yolunda bu məktubun böyük təsiri olur. Məsələn, bir hüquqşünas işə qəbul zamanı əvvəlki iş yoldaşlarından alınan müsbət tövsiyyə məktubunu təqdim edərək özünü təsdiqləyə bilər. <li>
-                                          Yaxşı Tövsiyyə Məktubunun Strukturu <br />
-                                          Güclü bir tövsiyyə məktubu giriş, əsas hissə və nəticədən ibarətdir:
-                                          <ul>
+                                  <li className="list-style-none">{bloq.mainheader}<br />
+                                      {bloq.mainheadermain}<li>
+                                          {bloq.mainmainheader}<br />
+                                          {bloq.mainmain}
+                                          <ul className="Bloq-Details-main-in">
                                               <li>
-                                                  Girişdə müraciətçini təqdim edərək necə tanıdığınızı və hansı sahədə birlikdə çalışdığınızı izah edin.
+                                                  {bloq.mainmainmainheader}
                                               </li>
                                               <li>
-                                                  Əsas hissədə müraciətçinin əsas bacarıqları və uğurlarına dair nümunələr verin.
+                                                  {bloq.mainmainmain}
                                               </li>
-                                              <li>Nəticədə müraciətçinin uyğun olduğunu təsdiq edin və onu səmimi şəkildə dəstəklədiyinizi qeyd edin.</li>
+                                              <li>{bloq.mainmainmainfooter}</li>
                                           </ul>
-                                          <li>
-                                              Real Nümunə <br />Hüquq şirkətində bir hüquqşünasa yazılan tövsiyyə məktubu: “(Müraciətçi adı), layihə təhvilindəki dəqiqliyi və detallara diqqəti ilə fərqlənir. Onunla çalışmaq, onun hüquq bacarıqlarının inkişafına şahid olmaq həqiqətən ilhamvericidir.”
+                                          <li className="list-style-none">
+                                              {bloq.footerheader} <br />{bloq.footermain}
                                           </li>
                                       </li>
                                   </li>
                               </ul>
-                              Nəticə <br />
-                              Güclü və yaxşı yazılmış tövsiyyə məktubu müraciətçinin uğur qazanmasına mühüm töhfə verir. Məktubun səmimiyyəti və dəstəyi <br /> mütləq şəkildə çatdırması zəruridir.
+                              {bloq.footerfooterheader} <br />
+                              {bloq.footerfootermain}
                           </li>
                       </ol>
                   </div>
