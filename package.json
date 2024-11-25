@@ -12,7 +12,6 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
     "history": "^5.3.0",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
@@ -28,7 +27,7 @@
   },
   "scripts": {
     "start": "set PORT=3000 && react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -49,8 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
- 
-
   },
-     "proxy": "https://url.ailawyer.az"
+  "proxy": "https://url.ailawyer.az",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

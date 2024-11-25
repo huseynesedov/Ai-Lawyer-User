@@ -24,8 +24,8 @@ function Home() {
         <div className='Home'>
             <div className="container">
                 <div className="home-hero d-flex justify-content-center liner-gradient">
-                    <div className="row align-items-center position-relative">
-                        <div className="col-xl-6">
+                    <div className="row align-items-center position-relative mt-5">
+                        <div className="col-xl-6 mt-5">
                             <div className="home-hero-content mt-5 d-flex flex-column align-items-end gap-4">
                                 <div>
                                     <h3 data-aos="fade-right" style={{ fontSize: "32px" }}>Aİ virtual hüqüqşünas sizin virtual hüquq məsləhətçinizdir.</h3>
