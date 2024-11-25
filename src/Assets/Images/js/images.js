@@ -36,9 +36,11 @@ import Login from '../Vector.svg'
 import Logo2 from '../loogsuu 1.svg'
 import user from '../1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg'
 
+import text from '../Frame 17.svg'
 
 export default {
     Logo,
+    text,
     Logo2,
     google,
     mail,

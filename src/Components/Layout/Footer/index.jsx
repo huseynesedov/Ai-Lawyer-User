@@ -13,8 +13,8 @@ function Footer() {
                     <div className="col-xl-3 d-flex align-items-center justify-content">
                         <div className="footer-info">
                             <Link href="/">
-                                <div className='w-100'>
-                                    <img className='w-100 ms-2' src={images.Logo2} alt="" />
+                                <div className='w-100 d-flex flex-column'>
+                                    <img className='w-100' src={images.text} alt="" />
                                 </div>
                             </Link>
                         </div>
