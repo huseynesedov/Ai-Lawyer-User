@@ -26,7 +26,7 @@ function Home() {
                 <div className="home-hero d-flex justify-content-center liner-gradient">
                     <div className="row align-items-center position-relative">
                         <div className="col-xl-6">
-                            <div className="home-hero-content d-flex flex-column align-items-end gap-4">
+                            <div className="home-hero-content mt-5 d-flex flex-column align-items-end gap-4">
                                 <div>
                                     <h3 data-aos="fade-right" style={{ fontSize: "32px" }}>Aİ virtual hüqüqşünas sizin virtual hüquq məsləhətçinizdir.</h3>
                                     <p data-aos="fade-right" className='mt-4' style={{ fontSize: "20px" }}>Bahalı hüquq məsləhətləri, görüşlər üçün uzun müddət gözləmələr və çaşqın hüquqi mətnlərlə vidalaşın.</p>
@@ -40,8 +40,10 @@ function Home() {
                             </div>
                         </div>
                         <div className="col-xl-6 d-flex align-item-center justify-content-center">
-                            <div className="home-hero-img">
-                                <img data-aos="fade-left" src={images.Mockup} className='w-100' alt="" />
+                            <div className="home-hero-img position-relative">
+                                <img data-aos="fade-left" src={images.Mockup} className='w-100 s' alt="" />
+                            <img className='position-absolute bezek3' src={images.bezekMokup1} alt="" />
+                            <img className='position-absolute bezek4' src={images.bezekMokup2} alt="" />
                             </div>
                         </div>
                         <div>

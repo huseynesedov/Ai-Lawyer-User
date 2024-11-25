@@ -1,5 +1,5 @@
-import Logo from '../setting 1.svg';
-import Mockup from '../Mockup.svg'
+import Logo from '../loogsuu 1.svg';
+import Mockup from '../Mooockup 1.png'
 import google from '../icons8-google.svg';
 import mail from '../Frame 2.svg';
 import arrowright from '../ArrowRight.svg';
@@ -28,8 +28,12 @@ import bloqdetails from '../bloqdetails.svg'
 import clockwhite from '../clockwhite.svg'
 
 
+import bezekMokup1 from '../Frame 17.png'
+import bezekMokup2 from '../Rectangle 9.png'
+
+
 import Login from '../Vector.svg'
-import Logo2 from '../logo.png'
+import Logo2 from '../loogsuu 1.svg'
 import user from '../1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg'
 
 
@@ -48,6 +52,9 @@ export default {
     send,
     bot,
 
+    bezekMokup1,
+    bezekMokup2,
+    
     homecard1,
     homecard2,
     homecard3,

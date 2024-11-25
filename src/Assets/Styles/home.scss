@@ -39,8 +39,9 @@
     justify-content: end;
     align-items: center;
 
-    img {
+    .s {
         width: 100%;
+        z-index: 2;
     }
 }
 
@@ -111,4 +112,14 @@
         width: 330px;
         border-radius: 6px;
     }
+}
+
+.bezek3{
+    right: 307px;
+    z-index: 1;
+    top: 147px;
+}
+.bezek4{
+    right: -7px;
+    top: -29px;
 }

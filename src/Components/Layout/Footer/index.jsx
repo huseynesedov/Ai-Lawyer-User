@@ -10,11 +10,11 @@ function Footer() {
         <div className='Footer'>
             <div className='container'>
                 <div className="row">
-                    <div className="col-xl-3">
+                    <div className="col-xl-3 d-flex align-items-center justify-content">
                         <div className="footer-info">
                             <Link href="/">
                                 <div className='w-100'>
-                                    <img className='w-100' src={images.Logo2} alt="" />
+                                    <img className='w-100 ms-2' src={images.Logo2} alt="" />
                                 </div>
                             </Link>
                         </div>
@@ -38,7 +38,7 @@ function Footer() {
                             </div>
                             <div className='my-2'>
                                 <a href="/Faq">
-                                AI cavabları hüquqi məsləhət kimi istifadə edilə bilərmi?
+                                    AI cavabları hüquqi məsləhət kimi istifadə edilə bilərmi?
                                     <FaArrowRight className='ms-2' />
                                 </a>
                             </div>
@@ -46,16 +46,16 @@ function Footer() {
                     </div>
                     <div className="col-xl-3">
                         <Link to={"/Kontakt"}>
-                            <h5>Kontakt</h5>
+                            <h5>Əlaqə</h5>
                         </Link>
                         <div className='mt-4 mail'>
-                            <a href="mailto:admin@AILAWYER.AZ">
-                                admin@AILAWYER.AZ
+                            <a href="mailto:admin@ailawyer.az">
+                                admin@ailawyer.az
                             </a>
                         </div>
                         <div className='my-2 mail'>
-                            <a href="mailto:info@AILAWYER.AZ">
-                                info@AILAWYER.AZ
+                            <a href="mailto:info@ailawyer.az">
+                                info@ailawyer.az
                             </a>
                         </div>
 

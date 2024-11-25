@@ -42,7 +42,7 @@ function Header() {
                         <div className="logo_SearchBar">
                             <Link to={"/"}>
                                 <p className='fs-28 fw-400 color-black'>
-                                    Ai Lawyer
+                                  <img src={images.Logo} alt="" className="w-100" />
                                 </p>
                             </Link>
                         </div>
